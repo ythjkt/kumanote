@@ -6,7 +6,7 @@ import Note from '../components/Note'
 
 const NoteList = ({ notes, selectNote }) => (
   <ul>
-    {notes.map(note => (
+    {Object.values(notes).map(note => (
       <Note
         key={note.id}
         title={note.title}
@@ -17,7 +17,7 @@ const NoteList = ({ notes, selectNote }) => (
 )
 
 NoteList.propTypes = {
-  notes: PropTypes.arrayOf(
+  notes: PropTypes.objectOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,

@@ -6,6 +6,13 @@ export const addNote = (title, content) => ({
   content
 })
 
+export const editNote = (id, title, content) => ({
+  type: 'EDIT_NOTE',
+  id,
+  title,
+  content
+})
+
 export const selectNote = id => ({
   type: 'SELECT_NOTE',
   id
