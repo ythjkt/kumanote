@@ -1,9 +1,7 @@
 let nextNoteId = 0
-export const addNote = (title, content) => ({
+export const addNote = () => ({
   type: 'ADD_NOTE',
-  id: nextNoteId++,
-  title,
-  content
+  id: nextNoteId++
 })
 
 export const editNote = (id, title, content) => ({
