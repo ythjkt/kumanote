@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { registerUser } from '../actions/user'
 import axios from 'axios'
 
 class Register extends Component {
@@ -8,11 +10,18 @@ class Register extends Component {
     this.state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      errors: {}
     }
 
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps })
+    }
   }
 
   onChange(e) {
@@ -28,10 +37,12 @@ class Register extends Component {
       password: this.state.password
     }
 
-    axios
-      .post('/api/users/register', newUser)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err.response.data))
+    this.props.registerUser(newUser)
+
+    // axios
+    //   .post('/api/users/register', newUser)
+    //   .then(res => console.log(res.data))
+    //   .catch(err => console.log(err.response.data))
   }
   render() {
     return (
@@ -65,4 +76,12 @@ class Register extends Component {
   }
 }
 
-export default Register
+const mapStateToProps = state => ({
+  user: state.user,
+  errors: state.errors
+})
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(Register)
