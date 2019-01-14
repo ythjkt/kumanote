@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { selectNote } from '../actions'
 import Note from '../components/Note'
+import { getNotes } from '../actions/'
 
-const NoteList = ({ notes, selectNote }) => (
-  <ul>
-    {Object.values(notes).map(note => (
-      <Note
-        key={note.id}
-        title={note.title}
-        onClick={() => selectNote(note.id)}
-      />
-    ))}
-  </ul>
-)
+class NoteList extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentDidMount() {
+    this.props.getNotes()
+  }
+
+  render() {
+    const { notes } = this.props
+    return (
+      <ul>
+        {Object.values(notes).map(note => (
+          <Note
+            key={note.id}
+            title={note.title}
+            onClick={() => this.props.selectNote(note.id)}
+          />
+        ))}
+      </ul>
+    )
+  }
+}
 
 NoteList.propTypes = {
   notes: PropTypes.objectOf(
@@ -31,11 +45,10 @@ const mapStateToProps = state => ({
   notes: state.notes
 })
 
-const mapDispatchToProps = dispatch => ({
-  selectNote: id => dispatch(selectNote(id))
-})
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    selectNote,
+    getNotes
+  }
 )(NoteList)

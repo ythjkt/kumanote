@@ -19,11 +19,13 @@ class EditNote extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { note } = nextProps
-    this.setState({
-      id: note.id,
-      title: note.title,
-      content: note.content
-    })
+    if (note) {
+      this.setState({
+        id: note.id,
+        title: note.title,
+        content: note.content
+      })
+    }
   }
 
   onChange(e) {
@@ -34,7 +36,7 @@ class EditNote extends Component {
     e.preventDefault()
 
     const { id, title, content } = this.state
-
+    console.log(id)
     this.props.editNote(id, title, content)
   }
 

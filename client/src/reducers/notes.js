@@ -1,35 +1,32 @@
-const initialState = {
-  1: {
-    id: 1,
-    title: 'first note',
-    content: 'content first note'
-  },
-  2: {
-    id: 2,
-    title: 'second note',
-    content: 'content secont note'
-  }
-}
+import arrayToObject from '../utils/arrayToObject'
 
-const notes = (state = initialState, action) => {
+const notes = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_NOTE':
       return {
         ...state,
-        [action.id]: {
-          id: action.id,
+        [action.payload.id]: {
+          id: action.payload.id,
           title: 'untitled',
           content: ''
         }
       }
     case 'EDIT_NOTE':
+      console.log(action)
       return {
         ...state,
-        [action.id]: {
-          id: action.id,
-          title: action.title,
-          content: action.content
+        [action.payload.id]: {
+          id: action.payload.id,
+          title: action.payload.title,
+          content: action.payload.content
         }
+      }
+    case 'GET_NOTES':
+      // Return an object with id as key
+      let notes = arrayToObject(action.payload, 'id')
+      return {
+        ...state,
+        ...notes
       }
     default:
       return state
