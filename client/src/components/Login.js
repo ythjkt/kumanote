@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { registerUser } from '../actions/user'
-import axios from 'axios'
+import { loginUser } from '../actions/user'
 
-class Register extends Component {
+class Login extends Component {
   constructor(props) {
     super(props)
 
@@ -19,6 +18,11 @@ class Register extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.user.isAuthenticated) {
+      // redirect to main page
+      console.log('You are logged already!')
+    }
+
     if (nextProps.errors) {
       this.setState({ errors: nextProps })
     }
@@ -37,25 +41,13 @@ class Register extends Component {
       password: this.state.password
     }
 
-    this.props.registerUser(newUser)
-
-    // axios
-    //   .post('/api/users/register', newUser)
-    //   .then(res => console.log(res.data))
-    //   .catch(err => console.log(err.response.data))
+    this.props.loginUser(newUser)
   }
   render() {
     return (
       <div>
-        <h2>Register</h2>
+        <h2>Login</h2>
         <form onSubmit={this.onSubmit}>
-          Name
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.onChange}
-          />
           Email
           <input
             type="text"
@@ -70,7 +62,7 @@ class Register extends Component {
             value={this.state.password}
             onChange={this.onChange}
           />
-          <button type="submit">Register</button>
+          <button type="submit">Login</button>
         </form>
       </div>
     )
@@ -84,5 +76,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { registerUser }
-)(Register)
+  { loginUser }
+)(Login)
