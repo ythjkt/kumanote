@@ -2,15 +2,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const passport = require('passport')
-// const cors = require('cors')
 
 const users = require('./src/routes/users')
 const notes = require('./src/routes/notes')
 
 const app = express()
-
-// Allow CORS for all routes :DEV
-// app.use(cors())
 
 // Add body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }))

@@ -6,7 +6,7 @@ const keys = require('../../config/keys')
 const passport = require('passport')
 
 // Load Input Validation
-const validateResigeterInput = require('../validators/validateRegister')
+const validateResigeterInput = require('../validators/validateRegisterInput')
 
 // @route GET api/users/test
 // @desc  Tests users route
@@ -15,9 +15,9 @@ router.get('/test', (req, res) => {
   res.json({ msg: 'Users works' })
 })
 
-// @route GET api/users/register
-// @desc  Creates user
-// @access Public
+// @route   POST api/users/register
+// @desc    Register user
+// @access  Public
 router.post('/register', (req, res) => {
   const { errors, isValid } = validateResigeterInput(req.body)
 
