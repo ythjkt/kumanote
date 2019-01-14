@@ -68,3 +68,12 @@ export const selectNote = id => {
     }
   }
 }
+
+export const deleteNote = id => dispatch => {
+  axios.delete(`/api/notes/${id}`).then(res => {
+    return dispatch({
+      type: 'DELETE_NOTE',
+      payload: res.data
+    })
+  })
+}

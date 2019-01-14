@@ -6,10 +6,6 @@ import Note from '../components/Note'
 import { getNotes } from '../actions/'
 
 class NoteList extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
     this.props.getNotes()
   }

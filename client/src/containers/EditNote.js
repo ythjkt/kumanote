@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { editNote } from '../actions'
+import { deleteNote } from '../actions'
 
 class EditNote extends Component {
   constructor(props) {
@@ -41,8 +41,6 @@ class EditNote extends Component {
   }
 
   render() {
-    let { note } = this.props
-    note = note ? note : { title: '', content: '' }
     return (
       <div>
         <form onSubmit={this.onSubmit}>
@@ -60,6 +58,9 @@ class EditNote extends Component {
           />
           <button type="submit">Submit</button>
         </form>
+        <button onClick={() => this.props.deleteNote(this.state.id)}>
+          Delete
+        </button>
       </div>
     )
   }
@@ -69,11 +70,7 @@ const mapStateToProps = state => ({
   note: state.notes[state.note]
 })
 
-const mapDispatchToProps = dispatch => ({
-  editNote: (id, title, content) => dispatch(editNote(id, title, content))
-})
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { editNote, deleteNote }
 )(EditNote)

@@ -28,6 +28,10 @@ const notes = (state = {}, action) => {
         ...state,
         ...notes
       }
+    case 'DELETE_NOTE':
+      let newState = { ...state }
+      delete newState[action.payload.id]
+      return newState
     default:
       return state
   }

@@ -1,9 +1,5 @@
 import isEmpty from '../utils/isEmpty'
 
-const initialState = {
-  authenticated: false
-}
-
 const user = (state = {}, action) => {
   switch (action.type) {
     case 'SET_CURRENT_USER':
