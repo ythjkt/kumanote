@@ -31,7 +31,7 @@ if (localStorage.jwtToken) {
   // Decode token
   const decoded = jwt_decode(localStorage.jwtToken)
   // Set user redux store
-  store.dispatch(setCurrentUser)
+  store.dispatch(setCurrentUser(decoded))
 }
 
 render(

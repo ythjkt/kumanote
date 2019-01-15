@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode'
 import setAuthToken from '../utils/setAuthToken'
 
 // Import Componenets
-import Header from '../containers/Header'
+import Navbar from '../containers/Navbar'
 import Landing from './Landing'
 import NoteList from '../containers/NoteList'
 import AddNote from '../containers/AddNote'
@@ -15,7 +15,7 @@ import Login from '../components/Login'
 const App = () => (
   <Router>
     <div className="app">
-      <Header />
+      <Navbar />
       <Route exact path="/" component={Landing} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
