@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
 import classnames from 'classnames'
 
 import { connect } from 'react-redux'
@@ -19,6 +18,13 @@ class Register extends Component {
 
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    // Redirect if already logged in
+    if (this.props.user.isAuthenticated) {
+      this.props.history.push('/app')
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -98,4 +104,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { registerUser }
-)(withRouter(Register))
+)(Register)

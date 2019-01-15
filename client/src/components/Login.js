@@ -18,6 +18,13 @@ class Login extends Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
 
+  componentDidMount() {
+    // Redirect if already logged in
+    if (this.props.user.isAuthenticated) {
+      this.props.history.push('/app')
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.isAuthenticated) {
       // redirect to main page

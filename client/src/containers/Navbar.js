@@ -4,6 +4,11 @@ import { connect } from 'react-redux'
 import { logoutUser } from '../actions/userActions'
 
 class Navbar extends Component {
+  onlogoutClick(e) {
+    e.preventDefault()
+    this.props.logoutUser()
+  }
+
   render() {
     const { isAuthenticated, user } = this.props.user
 
@@ -15,7 +20,9 @@ class Navbar extends Component {
     )
     const userLinks = (
       <span>
-        <a href="">Logout</a>
+        <a href="#" onClick={e => this.onlogoutClick(e)}>
+          Logout
+        </a>
       </span>
     )
     return (
@@ -32,4 +39,7 @@ const mapStateToProps = state => ({
   user: state.user
 })
 
-export default connect(mapStateToProps)(Navbar)
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(Navbar)

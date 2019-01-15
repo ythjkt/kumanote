@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
-import { setCurrentUser } from './actions/userActions'
+import { setCurrentUser, logoutUser } from './actions/userActions'
 
 import App from './components/App'
 
@@ -32,6 +32,17 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(localStorage.jwtToken)
   // Set user redux store
   store.dispatch(setCurrentUser(decoded))
+
+  // Check for expired token
+  const currentTime = Date.now() / 1000
+
+  if (decoded.exp < currentTime) {
+    store.dispatch(logoutUser())
+    // TODO Clear note
+
+    // Redirect to home
+    window.location.href = '/'
+  }
 }
 
 render(
