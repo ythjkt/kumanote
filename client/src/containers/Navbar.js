@@ -7,6 +7,7 @@ class Navbar extends Component {
   onlogoutClick(e) {
     e.preventDefault()
     this.props.logoutUser()
+    // TODO: clear notes too
   }
 
   render() {
