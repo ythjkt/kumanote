@@ -4,7 +4,6 @@ export const addNote = () => dispatch => {
   axios
     .post('/api/notes', { title: 'untitled', content: '' })
     .then(res => {
-      console.log(res)
       dispatch(selectNote(res.data.id))
       return dispatch({
         type: 'ADD_NOTE',

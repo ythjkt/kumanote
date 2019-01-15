@@ -25,6 +25,31 @@ router.get(
   }
 )
 
+// @route   GET api/notes/:id
+// @desc    Get note by id
+// @access  Private
+router.get(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const errors = {}
+    Note.findById(req.params.id)
+      .populate('user', ['name'])
+      .then(note => {
+        console.log(note)
+        console.log(note.user.id)
+        console.log(req.user.id)
+        if (!note || note.user.id !== req.user.id) {
+          errors.nonote = 'The note does not exist'
+          return res.status(404).json(errors)
+        }
+
+        res.json(note)
+      })
+      .catch(err => res.status(404).json({ nonote: 'The note does not exist' }))
+  }
+)
+
 // @route   POST api/notes
 // @desc    Create | Update note
 // @access  Private
@@ -43,6 +68,7 @@ router.post(
       title: req.body.title,
       content: req.body.content
     }
+
     Note.findById(req.body.id).then(note => {
       if (note) {
         // Update
