@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 
 import { connect } from 'react-redux'
 import { registerUser } from '../actions/userActions'
+
+// Components
+import TextFieldGroup from './common/TextFieldGroupInput'
 
 class Register extends Component {
   constructor(props) {
@@ -54,35 +56,28 @@ class Register extends Component {
       <div>
         <h2>Register</h2>
         <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
+          <TextFieldGroup
             name="name"
             placeholder="Name"
-            className={classnames('form', { 'is-invalid': errors.name })}
             value={this.state.name}
             onChange={this.onChange}
+            error={errors.name}
           />
-          {errors.name && <div className="invalid-feedback">{errors.name}</div>}
-          <input
-            type="text"
+          <TextFieldGroup
             name="email"
             placeholder="Email"
             value={this.state.email}
             onChange={this.onChange}
+            error={errors.email}
           />
-          {errors.email && (
-            <div className="invalid-feedback">{errors.email}</div>
-          )}
-          <input
+          <TextFieldGroup
             type="text"
             name="password"
             placeholder="Password"
             value={this.state.password}
             onChange={this.onChange}
+            error={errors.password}
           />
-          {errors.password && (
-            <div className="invalid-feedback">{errors.password}</div>
-          )}
           <button type="submit">Register</button>
         </form>
       </div>
