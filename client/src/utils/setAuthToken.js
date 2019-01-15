@@ -1,3 +1,6 @@
+// @desc
+// If `token` is passed, sets `JWT` to `Authorization` header
+// for every request from the client
 import axios from 'axios'
 
 const setAuthToken = token => {

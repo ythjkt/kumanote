@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import user from './user'
+import user from './userReducer'
 import note from './note'
 import notes from './notes'
-import errors from './errors'
+import errors from './errorReducer'
 
 export default combineReducers({
   user,
