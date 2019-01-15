@@ -1,62 +1,72 @@
 const router = require('express').Router()
+const passport = require('passport')
+
+// Models
 const Note = require('../models/Note')
 const User = require('../models/User')
-const passport = require('passport')
+
+// Converts '_id' to 'id'
 const toClient = require('../utils/toClient.mongoose')
 
-router.get('/test', (req, res) => {
-  res.json({ msg: 'notes works' })
-})
+// Inport Validators
+const validateNoteInput = require('../validators/validateNoteInput')
 
-// @route GET api/notes
-// @desc  Create note
-// @access Private
+// @route   GET api/notes
+// @desc    Get notes by user
+// @access  Private
 router.get(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Note.find({ user: req.user.id }).then(notes => {
-      return res.json(toClient(notes))
-    })
+    Note.find({ user: req.user.id })
+      .populate('user', 'name')
+      .then(notes => res.json(toClient(notes)))
+      .catch(err => res.status(404).json(err))
   }
 )
 
-// @route POST api/notes
-// @desc  Create note
-// @access Private
+// @route   POST api/notes
+// @desc    Create | Update note
+// @access  Private
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    console.log(req.body.id)
+    const { errors, isValid } = validateNoteInput(req.body)
 
-    // If id is passed, update the document
-    if (req.body.id) {
-      Note.findByIdAndUpdate(
-        req.body.id,
-        {
-          user: req.user.id,
-          title: req.body.title,
-          content: req.body.content
-        },
-        {
-          // return the updated document instaed of original
-          new: true
-        }
-      ).then(note => {
-        console.log(note)
-        return res.json(toClient(note))
-      })
-    } else {
-      // If id is not present, create a new document
-      const newNote = new Note({
-        user: req.user.id,
-        title: req.body.title,
-        content: req.body.content
-      })
-
-      newNote.save().then(note => res.json(toClient(note)))
+    if (!isValid) {
+      return res.status(400).json(errors)
     }
+
+    let noteFields = {
+      user: req.user.id,
+      title: req.body.title,
+      content: req.body.content
+    }
+    Note.findById(req.body.id).then(note => {
+      if (note) {
+        // Update
+        Note.findByIdAndUpdate(
+          req.body.id,
+          { $set: noteFields },
+          {
+            // return the updated document instaed of original
+            new: true
+          }
+        )
+          .populate('user', 'name')
+          .then(note => {
+            return res.json(toClient(note))
+          })
+      } else {
+        // Create
+        let newNote = new Note(noteFields)
+        newNote
+          .save()
+          .populate('user', 'name')
+          .then(note => res.json(toClient(note)))
+      }
+    })
   }
 )
 

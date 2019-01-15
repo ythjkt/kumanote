@@ -1,3 +1,6 @@
+// @desc   Converts '_id' to 'id'
+// @param  {mongoose docs} docs
+// @return {array of docs or doc}
 function toClient(docs) {
   return docs.map ? docs.map(doc => normaliseId(doc)) : normaliseId(docs)
 }
