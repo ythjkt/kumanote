@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loginUser } from '../actions/userActions'
+import classnames from 'classnames'
 
 class Login extends Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.isAuthenticated) {
       // redirect to main page
-      console.log('You are logged already!')
+      console.log('loggedin ')
+      this.props.history.push('/app')
     }
 
     if (nextProps.errors) {
@@ -44,24 +46,34 @@ class Login extends Component {
     this.props.loginUser(newUser)
   }
   render() {
+    const { errors } = this.props
+
     return (
       <div>
         <h2>Login</h2>
         <form onSubmit={this.onSubmit}>
-          Email
           <input
             type="text"
             name="email"
+            placeholder="Email"
+            className={classnames('form', { 'is-invalid': errors.name })}
             value={this.state.email}
             onChange={this.onChange}
           />
-          Password
+          {errors.email && (
+            <div className="invalid-feedback">{errors.email}</div>
+          )}
           <input
             type="text"
             name="password"
+            placeholder="Password"
+            className={classnames('form', { 'is-invalid': errors.name })}
             value={this.state.password}
             onChange={this.onChange}
           />
+          {errors.password && (
+            <div className="invalid-feedback">{errors.password}</div>
+          )}
           <button type="submit">Login</button>
         </form>
       </div>

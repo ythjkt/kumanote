@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
-import { setCurrentUser } from './actions/user'
+import { setCurrentUser } from './actions/userActions'
 
 import App from './components/App'
 
@@ -24,11 +24,14 @@ const store = createStore(
   )
 )
 
-// Check if there is user info in local storage
+// If token exists in localStorage
 if (localStorage.jwtToken) {
+  // Set auth token header
   setAuthToken(localStorage.jwtToken)
+  // Decode token
   const decoded = jwt_decode(localStorage.jwtToken)
-  store.dispatch(setCurrentUser(decoded))
+  // Set user redux store
+  store.dispatch(setCurrentUser)
 }
 
 render(

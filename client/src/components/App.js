@@ -1,5 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
+import setAuthToken from '../utils/setAuthToken'
 
 // Import Componenets
 import Header from '../containers/Header'
