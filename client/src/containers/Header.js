@@ -1,8 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const Header = ({ user }) => (
-  <div>USER: {user.isAuthenticated ? user.name : 'Guest'}</div>
+  <div>
+    <Link to="/">Kumanote</Link>
+    <span>USER: {user.isAuthenticated ? user.name : 'Guest'}</span>
+    <Link to="/register">Register</Link>
+    <Link to="/login">Login</Link>
+  </div>
 )
 
 const mapStateToProps = state => ({

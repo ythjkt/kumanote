@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { registerUser } from '../actions/user'
+import classnames from 'classnames'
+
+import axios from 'axios'
 
 class Register extends Component {
   constructor(props) {
@@ -36,39 +39,48 @@ class Register extends Component {
       password: this.state.password
     }
 
-    this.props.registerUser(newUser)
+    // this.props.registerUser(newUser)
 
-    // axios
-    //   .post('/api/users/register', newUser)
-    //   .then(res => console.log(res.data))
-    //   .catch(err => console.log(err.response.data))
+    axios
+      .post('/api/users/register', newUser)
+      .then(res => console.log(res.data))
+      .catch(err => this.setState({ errors: err.response.data }))
   }
   render() {
+    const { errors } = this.state
     return (
       <div>
         <h2>Register</h2>
         <form onSubmit={this.onSubmit}>
-          Name
           <input
             type="text"
             name="name"
+            placeholder="Name"
+            className={classnames('form', { 'is-invalid': errors.name })}
             value={this.state.name}
             onChange={this.onChange}
           />
-          Email
+          {errors.name && <div className="invalid-feedback">{errors.name}</div>}
           <input
             type="text"
             name="email"
+            placeholder="Email"
             value={this.state.email}
             onChange={this.onChange}
           />
-          Password
+          {errors.email && (
+            <div className="invalid-feedback">{errors.email}</div>
+          )}
           <input
             type="text"
             name="password"
+            placeholder="Password"
             value={this.state.password}
             onChange={this.onChange}
           />
+          {errors.password && (
+            <div className="invalid-feedback">{errors.password}</div>
+          )}
           <button type="submit">Register</button>
         </form>
       </div>
