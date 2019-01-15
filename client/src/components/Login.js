@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loginUser } from '../actions/userActions'
 import classnames from 'classnames'
@@ -28,7 +29,6 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.isAuthenticated) {
       // redirect to main page
-      console.log('loggedin ')
       this.props.history.push('/app')
     }
 
@@ -86,6 +86,12 @@ class Login extends Component {
       </div>
     )
   }
+}
+
+Login.propTypes = {
+  user: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logoutUser } from '../actions/userActions'
@@ -21,9 +22,7 @@ class Navbar extends Component {
     )
     const userLinks = (
       <span>
-        <a href="#" onClick={e => this.onlogoutClick(e)}>
-          Logout
-        </a>
+        <button onClick={e => this.onlogoutClick(e)}>Logout</button>
       </span>
     )
     return (
@@ -34,6 +33,11 @@ class Navbar extends Component {
       </div>
     )
   }
+}
+
+Navbar.propTypes = {
+  user: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
