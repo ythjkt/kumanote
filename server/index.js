@@ -2,15 +2,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const passport = require('passport')
-// const cors = require('cors')
 
 const users = require('./src/routes/users')
 const notes = require('./src/routes/notes')
 
 const app = express()
-
-// Allow CORS for all routes :DEV
-// app.use(cors())
 
 // Add body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -19,7 +15,10 @@ app.use(bodyParser.json())
 // Connect to MongoDB
 const db = require('./config/keys').mongoURI
 mongoose
-  .connect(db)
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err))
 
@@ -35,4 +34,4 @@ app.use('/api/notes', notes)
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => console.log('running'))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
