@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 // Import Componenets
 import PrivateRoute from '../components/common/PrivateRoute'
@@ -13,8 +13,6 @@ import Login from '../components/Login'
 
 class App extends Component {
   render() {
-    const isAuthenticated = this.props.user && this.props.user.isAuthenticated
-
     return (
       <Router>
         <div className="app">

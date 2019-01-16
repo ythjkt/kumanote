@@ -71,7 +71,7 @@ class Register extends Component {
             error={errors.email}
           />
           <TextFieldGroup
-            type="text"
+            type="password"
             name="password"
             placeholder="Password"
             value={this.state.password}

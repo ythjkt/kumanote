@@ -23,7 +23,7 @@ export const getNotes = () => dispatch => {
     })
     .catch(err => {
       return dispatch({
-        type: 'GET_NOTES',
+        type: GET_NOTES,
         payload: null
       })
     })
@@ -47,20 +47,17 @@ export const addNote = () => dispatch => {
 }
 
 export const editNote = (id, title, content) => dispatch => {
-  console.log('edit note action creator is being called')
-  console.log('editing note of id: ', id)
   axios
     .post('/api/notes', { id, title, content })
     .then(res => {
-      console.log('POST /api/notes returned success', res)
       return dispatch({
-        type: 'EDIT_NOTE',
+        type: EDIT_NOTE,
         payload: res.data
       })
     })
     .catch(err =>
       dispatch({
-        type: 'GET_ERRORS',
+        type: GET_ERRORS,
         payload: err.response.data
       })
     )
@@ -76,7 +73,6 @@ export const selectNote = id => {
 }
 
 export const deleteNote = id => dispatch => {
-  console.log('deleteNote action with id: ', id)
   axios
     .delete(`/api/notes/${id}`)
     .then(res => {

@@ -73,6 +73,7 @@ class Login extends Component {
             type="text"
             name="password"
             placeholder="Password"
+            type="password"
             value={this.state.password}
             onChange={this.onChange}
             error={errors.password}
