@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 // Import Componenets
 import Navbar from '../containers/Navbar'
 import Landing from './Landing'
-import Dashboard from '../containers/Dashboard'
+import Dashboard from '../components/Dashboard'
 import Register from '../components/Register'
 import Login from '../components/Login'
 
@@ -20,10 +20,8 @@ class App extends Component {
           <Navbar />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Switch>
-            {isAuthenticated && <Route exact path="/" component={Dashboard} />}
-            <Route exact path="/" component={Landing} />
-          </Switch>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/app" component={Dashboard} />
         </div>
       </Router>
     )
