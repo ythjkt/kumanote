@@ -1,27 +1,41 @@
-import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 // Import Componenets
 import Navbar from '../containers/Navbar'
 import Landing from './Landing'
-// import NoteList from '../containers/NoteList'
-// import AddNote from '../containers/AddNote'
-// import EditNote from '../containers/EditNote'
+import Dashboard from '../containers/Dashboard'
 import Register from '../components/Register'
 import Login from '../components/Login'
 
-const App = () => (
-  <Router>
-    <div className="app">
-      <Navbar />
-      <Route exact path="/" component={Landing} />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/login" component={Login} />
-      {/* <AddNote>Create Note</AddNote>
-      <NoteList />
-      <EditNote /> */}
-    </div>
-  </Router>
-)
+class App extends Component {
+  render() {
+    const isAuthenticated = this.props.user && this.props.user.isAuthenticated
 
-export default App
+    return (
+      <Router>
+        <div className="app">
+          <Navbar />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Switch>
+            {isAuthenticated && <Route exact path="/" component={Dashboard} />}
+            <Route exact path="/" component={Landing} />
+          </Switch>
+        </div>
+      </Router>
+    )
+  }
+}
+
+App.propTypes = {
+  user: PropTypes.object
+}
+
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps)(App)

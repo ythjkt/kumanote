@@ -13,15 +13,18 @@ class NoteList extends Component {
   render() {
     const { notes } = this.props
     return (
-      <ul>
-        {Object.values(notes).map(note => (
-          <Note
-            key={note.id}
-            title={note.title}
-            onClick={() => this.props.selectNote(note.id)}
-          />
-        ))}
-      </ul>
+      <div>
+        NOTELIST
+        <ul>
+          {Object.values(notes).map(note => (
+            <Note
+              key={note.id}
+              title={note.title}
+              onClick={() => this.props.selectNote(note.id)}
+            />
+          ))}
+        </ul>
+      </div>
     )
   }
 }
