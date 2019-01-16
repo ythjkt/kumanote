@@ -11,18 +11,19 @@ class NoteList extends Component {
   }
 
   render() {
-    const { notes } = this.props
+    const { notes } = this.props.note
     return (
       <div>
         NOTELIST
         <ul>
-          {Object.values(notes).map(note => (
-            <Note
-              key={note.id}
-              title={note.title}
-              onClick={() => this.props.selectNote(note.id)}
-            />
-          ))}
+          {notes &&
+            Object.values(notes).map(note => (
+              <Note
+                key={note.id}
+                title={note.title}
+                onClick={() => this.props.selectNote(note.id)}
+              />
+            ))}
         </ul>
       </div>
     )
@@ -41,7 +42,7 @@ NoteList.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  notes: state.notes
+  note: state.note
 })
 
 export default connect(

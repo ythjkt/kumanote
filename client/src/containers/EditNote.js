@@ -1,3 +1,6 @@
+// DEVNOTE
+// This component should probably recieve note from a parent component maybe?
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { editNote } from '../actions'

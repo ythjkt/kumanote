@@ -7,7 +7,7 @@ const Dashboard = () => (
   <div>
     <AddNote>Create Note</AddNote>
     <NoteList />
-    <EditNote />
+    {/* <EditNote /> */}
   </div>
 )
 
