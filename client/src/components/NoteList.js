@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { selectNote } from '../actions'
 import Note from '../components/Note'
-import { getNotes } from '../actions/noteActions'
+import { getNotes, selectNote } from '../actions/noteActions'
 
 class NoteList extends Component {
   componentDidMount() {
