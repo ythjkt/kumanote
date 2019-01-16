@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 // Import Componenets
+import PrivateRoute from '../components/common/PrivateRoute'
 import Navbar from '../containers/Navbar'
 import Landing from './Landing'
 import Dashboard from '../components/Dashboard'
@@ -21,7 +22,7 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Landing} />
-          <Route exact path="/app" component={Dashboard} />
+          <PrivateRoute exact path="/app" component={Dashboard} />
         </div>
       </Router>
     )

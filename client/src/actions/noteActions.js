@@ -6,7 +6,8 @@ import {
   GET_NOTES,
   DELETE_NOTE,
   SELECT_NOTE,
-  NOTE_LOADING
+  NOTE_LOADING,
+  GET_ERRORS
 } from '../constants/actionTypes'
 
 // Gets current user's notes
@@ -30,6 +31,36 @@ export const getNotes = () => dispatch => {
         payload: null
       })
     })
+}
+
+export const addNote = () => dispatch => {
+  console.log('recieved')
+  axios
+    .post('/api/notes', { title: 'untitled', content: '' })
+    .then(res => {
+      console.log('successful save')
+      console.log(res)
+      dispatch(selectNote(res.data.id))
+      return dispatch({
+        type: ADD_NOTE,
+        payload: res.data
+      })
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    )
+}
+
+export const selectNote = id => {
+  return {
+    type: SELECT_NOTE,
+    payload: {
+      id
+    }
+  }
 }
 
 // Sets Note loading to true

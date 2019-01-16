@@ -1,13 +1,12 @@
-import React from 'react'
-import NoteList from '../containers/NoteList'
-import AddNote from '../containers/AddNote'
-import EditNote from '../containers/EditNote'
+import React, { Component } from 'react'
+
+import Sidebar from '../components/Sidebar'
+import Main from '../components/Main'
 
 const Dashboard = () => (
   <div>
-    <AddNote>Create Note</AddNote>
-    <NoteList />
-    {/* <EditNote /> */}
+    <Sidebar />
+    <Main />
   </div>
 )
 

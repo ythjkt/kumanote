@@ -87,10 +87,11 @@ router.post(
       } else {
         // Create
         let newNote = new Note(noteFields)
-        newNote
-          .save()
-          .populate('user', 'name')
-          .then(note => res.json(toClient(note)))
+        newNote.save().then(note => {
+          Note.findById(note.id)
+            .populate('user', ['name'])
+            .then(note => res.json(note))
+        })
       }
     })
   }
