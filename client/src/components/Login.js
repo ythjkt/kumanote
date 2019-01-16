@@ -70,7 +70,6 @@ class Login extends Component {
             error={errors.email}
           />
           <TextFieldGroup
-            type="text"
             name="password"
             placeholder="Password"
             type="password"
