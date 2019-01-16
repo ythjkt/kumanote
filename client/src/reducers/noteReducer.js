@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   selectedNoteId: null,
-  notes: null,
+  notes: {},
   loading: false
 }
 
@@ -41,6 +41,22 @@ const note = (state = initialState, action) => {
         selectedNoteId: action.payload.id,
         notes: { [action.payload.id]: action.payload, ...state.notes }
       }
+    case EDIT_NOTE:
+      return {
+        ...state,
+        notes: {
+          ...state.notes,
+          [action.payload.id]: {
+            id: action.payload.id,
+            title: action.payload.title,
+            content: action.payload.content
+          }
+        }
+      }
+    case DELETE_NOTE:
+      let newState = { ...state, selectedNoteId: null }
+      delete newState.notes[action.payload.id]
+      return newState
     default:
       return state
   }

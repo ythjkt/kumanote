@@ -31,14 +31,7 @@ class NoteList extends Component {
 }
 
 NoteList.propTypes = {
-  notes: PropTypes.objectOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired,
-  selectNote: PropTypes.func.isRequired
+  note: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

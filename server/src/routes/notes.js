@@ -44,7 +44,7 @@ router.get(
           return res.status(404).json(errors)
         }
 
-        res.json(note)
+        res.json(toClient(note))
       })
       .catch(err => res.status(404).json({ nonote: 'The note does not exist' }))
   }
@@ -90,7 +90,7 @@ router.post(
         newNote.save().then(note => {
           Note.findById(note.id)
             .populate('user', ['name'])
-            .then(note => res.json(note))
+            .then(note => res.json(toClient(note)))
         })
       }
     })

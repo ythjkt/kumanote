@@ -46,7 +46,7 @@ class EditNote extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
+        <form>
           <input
             type="text"
             onChange={this.onChange}
