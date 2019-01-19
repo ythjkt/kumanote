@@ -1,11 +1,32 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { registerUser } from '../actions/userActions'
 
 // Components
 import TextFieldGroup from './common/TextFieldGroupInput'
+import Button from './Button'
+
+const CenterBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+`
+
+const Logo = styled(Link)`
+  text-align: center;
+  font-size: 24px;
+`
+
+const CenterBox = styled.div`
+  width: 320px;
+  border: 1px solid black;
+`
 
 class Register extends Component {
   constructor(props) {
@@ -53,34 +74,39 @@ class Register extends Component {
   render() {
     const { errors } = this.state
     return (
-      <div>
-        <h2>Register</h2>
-        <form onSubmit={this.onSubmit}>
-          <TextFieldGroup
-            name="name"
-            placeholder="Name"
-            value={this.state.name}
-            onChange={this.onChange}
-            error={errors.name}
-          />
-          <TextFieldGroup
-            name="email"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.onChange}
-            error={errors.email}
-          />
-          <TextFieldGroup
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.onChange}
-            error={errors.password}
-          />
-          <button type="submit">Register</button>
-        </form>
-      </div>
+      <CenterBlock>
+        <CenterBox>
+          <Logo to="/">justnoteit</Logo>
+          <form onSubmit={this.onSubmit}>
+            <TextFieldGroup
+              name="name"
+              placeholder="Name"
+              value={this.state.name}
+              onChange={this.onChange}
+              error={errors.name}
+            />
+            <TextFieldGroup
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              onChange={this.onChange}
+              error={errors.email}
+            />
+            <TextFieldGroup
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.onChange}
+              error={errors.password}
+            />
+            <Button type="submit">Register</Button>
+          </form>
+          <p>
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
+        </CenterBox>
+      </CenterBlock>
     )
   }
 }

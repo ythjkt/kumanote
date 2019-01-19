@@ -2,7 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addNote } from '../actions/noteActions'
 
-const AddNote = ({ addNote }) => <button onClick={addNote}>ADD NOTE!</button>
+import Button from './Button'
+
+const AddNote = ({ addNote }) => <Button onClick={addNote}>ADD NOTE!</Button>
 
 export default connect(
   null,

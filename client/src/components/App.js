@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+import { createGlobalStyle } from 'styled-components'
+
 // Import Componenets
 import PrivateRoute from '../components/common/PrivateRoute'
 import Navbar from '../containers/Navbar'
@@ -11,12 +13,19 @@ import Dashboard from '../components/Dashboard'
 import Register from '../components/Register'
 import Login from '../components/Login'
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    color: #111111;
+    font-family: 'Poppins', sans-serif;
+  }
+`
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="app">
-          <Navbar />
+          <GlobalStyle />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Landing} />
