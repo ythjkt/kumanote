@@ -20,6 +20,7 @@ class NoteList extends Component {
               <Note
                 key={note.id}
                 title={note.title}
+                content={note.content}
                 onClick={() => this.props.selectNote(note.id)}
               />
             ))}
