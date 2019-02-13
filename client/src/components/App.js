@@ -13,6 +13,7 @@ import Dashboard from '../components/Dashboard'
 import Register from '../components/Register'
 import Login from '../components/Login'
 import NoteEditor from './NoteEditor'
+import Header from './Header/Header'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -27,6 +28,7 @@ class App extends Component {
       <Router>
         <div className="app">
           <GlobalStyle />
+          <Header />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Landing} />
