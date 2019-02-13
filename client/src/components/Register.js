@@ -18,11 +18,6 @@ const CenterBlock = styled.div`
   height: 100vh;
 `
 
-const Logo = styled(Link)`
-  text-align: center;
-  font-size: 24px;
-`
-
 const CenterBox = styled.div`
   width: 320px;
   border: 1px solid black;
@@ -76,7 +71,6 @@ class Register extends Component {
     return (
       <CenterBlock>
         <CenterBox>
-          <Logo to="/">justnoteit</Logo>
           <form onSubmit={this.onSubmit}>
             <TextFieldGroup
               name="name"

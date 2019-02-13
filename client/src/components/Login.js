@@ -18,11 +18,6 @@ const CenterBlock = styled.div`
   height: 100vh;
 `
 
-const Logo = styled(Link)`
-  text-align: center;
-  font-size: 24px;
-`
-
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -77,7 +72,6 @@ class Login extends Component {
     return (
       <CenterBlock>
         <div>
-          <Logo to="/">justnoteit</Logo>
           <form onSubmit={this.onSubmit}>
             <TextFieldGroup
               type="text"
