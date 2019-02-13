@@ -36,9 +36,6 @@ router.get(
     Note.findById(req.params.id)
       .populate('user', ['name'])
       .then(note => {
-        console.log(note)
-        console.log(note.user.id)
-        console.log(req.user.id)
         if (!note || note.user.id !== req.user.id) {
           errors.nonote = 'The note does not exist'
           return res.status(404).json(errors)
@@ -46,7 +43,9 @@ router.get(
 
         res.json(toClient(note))
       })
-      .catch(err => res.status(404).json({ nonote: 'The note does not exist' }))
+      .catch(err => {
+        res.status(404).json({ nonote: 'The note does not exist' })
+      })
   }
 )
 

@@ -35,19 +35,17 @@ export const getNote = id => dispatch => {
   axios
     .get(`/api/notes/${id}`)
     .then(res => {
-      console.log('getNote is being called')
-      console.log(res)
-      console.log(id)
       return dispatch({
         type: GET_NOTE,
         payload: res.data
       })
     })
     .catch(err => {
-      return dispatch({
-        type: GET_NOTE,
-        payload: null
-      })
+      // TODO dispatch NO_NOTE?
+      // return dispatch({
+      //   type: GET_NOTE,
+      //   payload: null
+      // })
     })
 }
 
