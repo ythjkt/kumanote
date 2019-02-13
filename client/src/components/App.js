@@ -12,11 +12,12 @@ import Landing from './Landing'
 import Dashboard from '../components/Dashboard'
 import Register from '../components/Register'
 import Login from '../components/Login'
+import NoteEditor from './NoteEditor'
 
 const GlobalStyle = createGlobalStyle`
   body {
     color: #111111;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Open Sans', sans-serif;
   }
 `
 
@@ -30,6 +31,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Landing} />
           <PrivateRoute exact path="/app" component={Dashboard} />
+          <PrivateRoute exact path="/app/:id" component={NoteEditor} />
         </div>
       </Router>
     )

@@ -1,12 +1,13 @@
 import React from 'react'
 import NoteList from '../components/NoteList'
-import AddNote from '../components/AddNote'
+
+import Toolbar from '../components/Toolbar'
 
 const Sidebar = () => {
   return (
     <div>
       Sidebar
-      <AddNote />
+      <Toolbar />
       <NoteList />
     </div>
   )

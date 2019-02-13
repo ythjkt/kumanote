@@ -4,6 +4,7 @@ import {
   ADD_NOTE,
   EDIT_NOTE,
   GET_NOTES,
+  GET_NOTE,
   DELETE_NOTE,
   SELECT_NOTE,
   NOTE_LOADING
@@ -19,10 +20,21 @@ const note = (state = initialState, action) => {
   switch (action.type) {
     case GET_NOTES:
       // Return an object with id as key
-      let notes = arrayToObject(action.payload, 'id')
+      var notes = arrayToObject(action.payload, 'id')
       return {
         ...state,
         notes,
+        loading: false
+      }
+    case GET_NOTE:
+      console.log(action.type)
+      console.log(action.payload)
+      var notes = { ...state.notes, [action.payload.id]: action.payload }
+      console.log('notes: ')
+      return {
+        ...state,
+        notes,
+        selectedNoteId: action.payload.id,
         loading: false
       }
     case NOTE_LOADING:
@@ -31,6 +43,7 @@ const note = (state = initialState, action) => {
         loading: true
       }
     case SELECT_NOTE:
+      console.log('Select Note reducer ')
       return {
         ...state,
         selectedNoteId: action.payload.id

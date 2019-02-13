@@ -1,12 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { addNote } from '../actions/noteActions'
 
 import Button from './Button'
 
-const AddNote = ({ addNote }) => <Button onClick={addNote}>ADD NOTE!</Button>
+const AddNote = ({ addNote, history }) => (
+  <Button onClick={() => addNote(history)}>New Note</Button>
+)
 
-export default connect(
-  null,
-  { addNote }
-)(AddNote)
+export default withRouter(
+  connect(
+    null,
+    { addNote }
+  )(AddNote)
+)

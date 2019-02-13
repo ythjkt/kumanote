@@ -15,6 +15,7 @@ const NoteBox = styled.div`
   width: 320px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  cursor: pointer;
 `
 
 const Tag = styled.span`

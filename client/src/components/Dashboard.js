@@ -1,12 +1,12 @@
 import React from 'react'
 
 import Sidebar from '../components/Sidebar'
-import Main from '../components/Main'
+import AppHeader from '../components/AppHeader'
 
 const Dashboard = () => (
   <div>
+    <AppHeader />
     <Sidebar />
-    <Main />
   </div>
 )
 

@@ -4,6 +4,7 @@ import {
   ADD_NOTE,
   EDIT_NOTE,
   GET_NOTES,
+  GET_NOTE,
   DELETE_NOTE,
   SELECT_NOTE,
   NOTE_LOADING,
@@ -29,10 +30,32 @@ export const getNotes = () => dispatch => {
     })
 }
 
-export const addNote = () => dispatch => {
+// Gets a single note
+export const getNote = id => dispatch => {
+  axios
+    .get(`/api/notes/${id}`)
+    .then(res => {
+      console.log('getNote is being called')
+      console.log(res)
+      console.log(id)
+      return dispatch({
+        type: GET_NOTE,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      return dispatch({
+        type: GET_NOTE,
+        payload: null
+      })
+    })
+}
+
+export const addNote = history => dispatch => {
   axios
     .post('/api/notes', { title: 'untitled', content: '' })
     .then(res => {
+      history.push(`/app/${res.data.id}`)
       return dispatch({
         type: ADD_NOTE,
         payload: res.data
@@ -64,6 +87,7 @@ export const editNote = (id, title, content) => dispatch => {
 }
 
 export const selectNote = id => {
+  console.log('SelectNote action is being called')
   return {
     type: SELECT_NOTE,
     payload: {

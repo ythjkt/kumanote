@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { editNote, deleteNote } from '../actions/noteActions'
+import { editNote, deleteNote, getNote } from '../actions/noteActions'
 
 class NoteEditor extends Component {
   constructor() {
@@ -18,6 +18,10 @@ class NoteEditor extends Component {
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.onDeleteClick = this.onDeleteClick.bind(this)
+  }
+
+  componentWillMount() {
+    this.props.getNote(this.props.match.params.id)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -81,5 +85,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { editNote, deleteNote }
+  { editNote, deleteNote, getNote }
 )(NoteEditor)

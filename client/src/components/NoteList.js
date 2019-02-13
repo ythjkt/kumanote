@@ -3,10 +3,22 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Note from '../components/Note'
 import { getNotes, selectNote } from '../actions/noteActions'
+import { withRouter } from 'react-router-dom'
+
+import styled from 'styled-components'
+
+const StyledNoteList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`
 
 class NoteList extends Component {
   componentDidMount() {
     this.props.getNotes()
+  }
+
+  onSelectNote = id => {
+    this.props.history.push(`/app/${id}`)
   }
 
   render() {
@@ -14,17 +26,17 @@ class NoteList extends Component {
     return (
       <div>
         NOTELIST
-        <ul>
+        <StyledNoteList>
           {notes &&
             Object.values(notes).map(note => (
               <Note
                 key={note.id}
                 title={note.title}
                 content={note.content}
-                onClick={() => this.props.selectNote(note.id)}
+                onClick={() => this.onSelectNote(note.id)}
               />
             ))}
-        </ul>
+        </StyledNoteList>
       </div>
     )
   }
@@ -38,10 +50,13 @@ const mapStateToProps = state => ({
   note: state.note
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    selectNote,
-    getNotes
-  }
-)(NoteList)
+// Wrap with withRouter to pass props.history to NoteList
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {
+      selectNote,
+      getNotes
+    }
+  )(NoteList)
+)
