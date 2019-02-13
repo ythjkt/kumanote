@@ -7,20 +7,28 @@ const Title = styled.h1`
   font-size: 60px;
   text-align: center;
   color: #111;
+  font-family: minion-3, serif;
 `
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: rgba(56, 80, 162, 0.1);
 `
 
 const Landing = () => (
   <div>
     <Header />
     <Wrapper>
-      <Title>Just Note It</Title>
+      <Title>Organise your notes with Kumanote</Title>
+      <p>
+        Research shows that cluttered note and information is the number one
+        cause of cancer. My decluttering your notes, not only can you reduce the
+        chance of cancer but also be happier with life.
+      </p>
     </Wrapper>
   </div>
 )
