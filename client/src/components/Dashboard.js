@@ -1,10 +1,12 @@
 import React from 'react'
 
-import Sidebar from '../components/Sidebar'
+import Toolbar from './Toolbar'
+import NoteList from './NoteList'
 
 const Dashboard = () => (
   <div>
-    <Sidebar />
+    <Toolbar />
+    <NoteList />
   </div>
 )
 

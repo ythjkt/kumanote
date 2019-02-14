@@ -12,7 +12,7 @@ import Dashboard from '../components/Dashboard'
 import Register from '../components/Register'
 import Login from '../components/Login'
 import NoteEditor from './NoteEditor'
-import Header from './Header/Header'
+import Header from '../containers/Header/Header'
 
 const GlobalStyle = createGlobalStyle`
   body {
