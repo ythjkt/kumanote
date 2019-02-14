@@ -22,6 +22,10 @@ const CenterBox = styled.div`
   width: 320px;
 `
 
+const StyledForm = styled.form`
+  margin-bottom: 20px;
+`
+
 class Register extends Component {
   constructor(props) {
     super(props)
@@ -70,7 +74,7 @@ class Register extends Component {
     return (
       <CenterBlock>
         <CenterBox>
-          <form onSubmit={this.onSubmit}>
+          <StyledForm onSubmit={this.onSubmit}>
             <TextFieldGroup
               name="name"
               placeholder="Name"
@@ -94,7 +98,7 @@ class Register extends Component {
               error={errors.password}
             />
             <Button type="submit">Register</Button>
-          </form>
+          </StyledForm>
           <p>
             Already have an account? <Link to="/login">Login</Link>
           </p>

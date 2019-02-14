@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 
 // Import Componenets
-import PrivateRoute from '../components/common/PrivateRoute'
+import PrivateRoute from '../containers/auth/PrivateRoute'
 import Landing from './Landing'
 import Dashboard from '../components/Dashboard'
 import Register from '../containers/auth/Register'

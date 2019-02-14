@@ -31,6 +31,10 @@ const Input = styled.input`
   }
 `
 
+const StyledTextFieldGroup = styled.div`
+  height: 90px;
+`
+
 const TextFieldGroup = ({
   name,
   placeholder,
@@ -42,7 +46,7 @@ const TextFieldGroup = ({
   disabled
 }) => {
   return (
-    <div>
+    <StyledTextFieldGroup>
       <Label>{placeholder}</Label>
       <Input
         full
@@ -55,7 +59,7 @@ const TextFieldGroup = ({
       />
       {info && <small>{info}</small>}
       {error && <ErroMessage className="invalid-feedback">{error}</ErroMessage>}
-    </div>
+    </StyledTextFieldGroup>
   )
 }
 
