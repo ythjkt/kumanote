@@ -6,6 +6,7 @@ import AddNote from '../containers/note/AddNote'
 const StyledToolbar = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 40px 0;
 `
 
 export default class Toolbar extends Component {

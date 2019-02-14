@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 
 import Logo from './Logo'
 
+import { wrapperWidth } from '../../const/sizes'
+
 const StyledLink = styled(Link)`
   font-weight: 600;
   font-size: 16px;
@@ -15,11 +17,22 @@ const StyledLink = styled(Link)`
 const StyledHeader = styled.div`
   height: 60px;
   padding: 10px 24px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+`
+
+const Wrapper = styled.div`
+  width: ${wrapperWidth}px;
   display: flex;
   justify-content: flex-end;
-  width: 100%;
-  box-sizing: border-box;
-  background-color: white;
+  margin: auto;
+  align-items: center;
+`
+
+const FlexBox = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 class Header extends Component {
@@ -33,24 +46,26 @@ class Header extends Component {
     const { isAuthenticated, user } = this.props.user
 
     const authLinks = (
-      <div>
+      <FlexBox>
         <StyledLink to="/" onClick={this.onLogoutClick}>
           Logout
         </StyledLink>
-      </div>
+      </FlexBox>
     )
 
     const guestLinks = (
-      <div>
+      <FlexBox>
         <StyledLink to="/register">Register</StyledLink>
         <StyledLink to="/login">Login</StyledLink>
-      </div>
+      </FlexBox>
     )
 
     return (
       <StyledHeader>
-        <Logo />
-        {isAuthenticated ? authLinks : guestLinks}
+        <Wrapper>
+          <Logo />
+          {isAuthenticated ? authLinks : guestLinks}
+        </Wrapper>
       </StyledHeader>
     )
   }

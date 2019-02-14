@@ -10,11 +10,11 @@ const Content = styled.p`
   font-size: 16px;
 `
 const NoteBox = styled.div`
-  margin: 40px;
   padding: 20px;
   width: 320px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  box-sizing: border-box;
   cursor: pointer;
 `
 

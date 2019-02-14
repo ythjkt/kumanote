@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 
 const StyledLogo = styled(Link)`
   margin-right: auto;
+  display: flex;
+  align-items: center;
 
   & svg {
     height: 20px;

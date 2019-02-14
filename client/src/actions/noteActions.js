@@ -9,7 +9,7 @@ import {
   SELECT_NOTE,
   NOTE_LOADING,
   GET_ERRORS
-} from '../constants/actionTypes'
+} from '../const/actionTypes'
 
 // Gets current user's notes
 export const getNotes = () => dispatch => {

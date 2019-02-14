@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import Note from '../components/Note'
-import { getNotes, selectNote } from '../actions/noteActions'
+import Note from '../../components/Note'
+import { getNotes, selectNote } from '../../actions/noteActions'
 import { withRouter } from 'react-router-dom'
 
 import styled from 'styled-components'
@@ -10,6 +10,8 @@ import styled from 'styled-components'
 const StyledNoteList = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 40px;
+  grid-column-gap: 40px;
 `
 
 class NoteList extends Component {
@@ -24,20 +26,17 @@ class NoteList extends Component {
   render() {
     const { notes } = this.props.note
     return (
-      <div>
-        NOTELIST
-        <StyledNoteList>
-          {notes &&
-            Object.values(notes).map(note => (
-              <Note
-                key={note.id}
-                title={note.title}
-                content={note.content}
-                onClick={() => this.onSelectNote(note.id)}
-              />
-            ))}
-        </StyledNoteList>
-      </div>
+      <StyledNoteList>
+        {notes &&
+          Object.values(notes).map(note => (
+            <Note
+              key={note.id}
+              title={note.title}
+              content={note.content}
+              onClick={() => this.onSelectNote(note.id)}
+            />
+          ))}
+      </StyledNoteList>
     )
   }
 }

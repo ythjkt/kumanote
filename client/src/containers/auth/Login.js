@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 // Components
 import TextFieldGroup from '../../components/common/TextFieldGroupInput'
-import Button from '../../components/Button'
+import Button from '../../components/atoms/Button'
 
 const CenterBlock = styled.div`
   display: flex;
@@ -16,6 +16,10 @@ const CenterBlock = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+`
+
+const CenterBox = styled.div`
+  width: 320px;
 `
 
 class Login extends Component {
@@ -71,7 +75,7 @@ class Login extends Component {
 
     return (
       <CenterBlock>
-        <div>
+        <CenterBox>
           <form onSubmit={this.onSubmit}>
             <TextFieldGroup
               type="text"
@@ -94,7 +98,7 @@ class Login extends Component {
           <p>
             Don't have an account? <Link to="/register">Register</Link>
           </p>
-        </div>
+        </CenterBox>
       </CenterBlock>
     )
   }

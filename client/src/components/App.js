@@ -15,6 +15,12 @@ import NoteEditor from '../containers/note/NoteEditor'
 import Header from '../containers/header/Header'
 
 const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   body {
     color: #111111;
     font-family: 'Open Sans', sans-serif;

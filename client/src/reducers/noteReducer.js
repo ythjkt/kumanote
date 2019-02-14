@@ -8,7 +8,7 @@ import {
   DELETE_NOTE,
   SELECT_NOTE,
   NOTE_LOADING
-} from '../constants/actionTypes'
+} from '../const/actionTypes'
 
 const initialState = {
   selectedNoteId: null,

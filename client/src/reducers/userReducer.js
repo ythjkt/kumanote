@@ -1,6 +1,6 @@
 import isEmpty from '../utils/isEmpty'
 
-import { SET_CURRENT_USER } from '../constants/actionTypes'
+import { SET_CURRENT_USER } from '../const/actionTypes'
 
 const initialState = {
   isAuthenticated: false,

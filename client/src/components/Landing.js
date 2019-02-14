@@ -3,8 +3,12 @@ import styled from 'styled-components'
 
 import screenshot from './screenshot.png'
 
+import { contentWidth } from '../const/sizes'
+
 const Title = styled.h1`
+  margin: 60px 0 32px;
   font-size: 60px;
+  line-height: 1.3em;
   text-align: center;
   color: #111;
   font-family: minion-3, serif;
@@ -15,27 +19,43 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: rgba(56, 80, 162, 0.1);
+  width: ${contentWidth}px;
+  margin: auto;
+`
+
+const Paragraph = styled.p`
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.6em;
+  margin-bottom: 60px;
 `
 
 const Screenshot = styled.img`
-  width: 800px;
+  width: 1000px;
   border-radius: 10px;
+  margin-bottom: 60px;
+`
+
+const ContentArea = styled.div`
+  background-color: rgba(56, 80, 162, 0.1);
 `
 
 const Landing = () => (
-  <div>
+  <ContentArea>
     <Wrapper>
-      <Title>Organise your notes with Kumanote</Title>
-      <p>
+      <Title>
+        Organise your notes
+        <br /> with Kumanote
+      </Title>
+      <Paragraph>
         Research shows that cluttered note and information is the number one
-        cause of cancer. My decluttering your notes, not only can you reduce the
-        chance of cancer but also be happier with life.
-      </p>
+        cause of cancer. <br />
+        My decluttering your notes, not only can you reduce the chance of cancer
+        but also be happier with life.
+      </Paragraph>
       <Screenshot src={screenshot} alt="screenshot" />
     </Wrapper>
-  </div>
+  </ContentArea>
 )
 
 export default Landing
