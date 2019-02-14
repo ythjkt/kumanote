@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import AddNote from '../components/AddNote'
+import AddNote from '../containers/note/AddNote'
 
 const StyledToolbar = styled.div`
   display: flex;

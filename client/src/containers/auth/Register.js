@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { registerUser } from '../actions/userActions'
+import { registerUser } from '../../actions/userActions'
 
 // Components
-import TextFieldGroup from './common/TextFieldGroupInput'
-import Button from './Button'
+import TextFieldGroup from '../../components/common/TextFieldGroupInput'
+import Button from '../../components/Button'
 
 const CenterBlock = styled.div`
   display: flex;

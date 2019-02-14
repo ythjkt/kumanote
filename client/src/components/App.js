@@ -9,10 +9,10 @@ import { createGlobalStyle } from 'styled-components'
 import PrivateRoute from '../components/common/PrivateRoute'
 import Landing from './Landing'
 import Dashboard from '../components/Dashboard'
-import Register from '../components/Register'
-import Login from '../components/Login'
+import Register from '../containers/auth/Register'
+import Login from '../containers/auth/Login'
 import NoteEditor from '../containers/note/NoteEditor'
-import Header from '../containers/Header/Header'
+import Header from '../containers/header/Header'
 
 const GlobalStyle = createGlobalStyle`
   body {

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loginUser } from '../actions/userActions'
+import { loginUser } from '../../actions/userActions'
 
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 // Components
-import TextFieldGroup from './common/TextFieldGroupInput'
-import Button from './Button'
+import TextFieldGroup from '../../components/common/TextFieldGroupInput'
+import Button from '../../components/Button'
 
 const CenterBlock = styled.div`
   display: flex;
