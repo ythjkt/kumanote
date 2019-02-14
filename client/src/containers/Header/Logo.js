@@ -14,7 +14,7 @@ const StyledLogo = styled(Link)`
 
 export default function Logo() {
   return (
-    <StyledLogo to="/">
+    <StyledLogo to="/app">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51.03 7.94">
         <title>Kumanote</title>
         <g id="Layer_2" data-name="Layer 2">

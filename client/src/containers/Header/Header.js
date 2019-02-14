@@ -15,9 +15,6 @@ const StyledLink = styled(Link)`
 const StyledHeader = styled.div`
   height: 60px;
   padding: 10px 24px;
-  position: fixed;
-  top: 0;
-  left: 0;
   display: flex;
   justify-content: flex-end;
   width: 100%;
