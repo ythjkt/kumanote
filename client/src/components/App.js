@@ -7,7 +7,6 @@ import { createGlobalStyle } from 'styled-components'
 
 // Import Componenets
 import PrivateRoute from '../components/common/PrivateRoute'
-import Navbar from '../containers/Navbar'
 import Landing from './Landing'
 import Dashboard from '../components/Dashboard'
 import Register from '../components/Register'
@@ -40,12 +39,4 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  user: PropTypes.object
-}
-
-const mapStateToProps = state => ({
-  user: state.user
-})
-
-export default connect(mapStateToProps)(App)
+export default App
