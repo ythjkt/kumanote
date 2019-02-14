@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { editNote, deleteNote, getNote } from '../actions/noteActions'
+import { editNote, deleteNote, getNote } from '../../actions/noteActions'
 
 class NoteEditor extends Component {
   constructor() {

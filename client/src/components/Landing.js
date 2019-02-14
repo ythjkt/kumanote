@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Header from './Header/Header'
-
 import screenshot from './screenshot.png'
 
 const Title = styled.h1`
@@ -28,7 +26,6 @@ const Screenshot = styled.img`
 
 const Landing = () => (
   <div>
-    <Header />
     <Wrapper>
       <Title>Organise your notes with Kumanote</Title>
       <p>

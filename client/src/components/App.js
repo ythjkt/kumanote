@@ -11,7 +11,7 @@ import Landing from './Landing'
 import Dashboard from '../components/Dashboard'
 import Register from '../components/Register'
 import Login from '../components/Login'
-import NoteEditor from './NoteEditor'
+import NoteEditor from '../containers/note/NoteEditor'
 import Header from '../containers/Header/Header'
 
 const GlobalStyle = createGlobalStyle`
