@@ -4,7 +4,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { editNote, deleteNote, getNote } from '../../actions/noteActions'
-
+import PageContainer from './rich/PageContainer'
 class NoteEditor extends Component {
   constructor() {
     super()
@@ -75,7 +75,12 @@ class NoteEditor extends Component {
     } else {
       noteContent = <div>Blank</div>
     }
-    return <div>{noteContent}</div>
+    return (
+      <div>
+        {noteContent}
+        <PageContainer />
+      </div>
+    )
   }
 }
 
