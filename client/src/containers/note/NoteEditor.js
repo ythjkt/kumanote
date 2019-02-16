@@ -14,24 +14,30 @@ import {
 } from 'draft-js'
 import styled from 'styled-components'
 
+const starter = {
+  blocks: [
+    {
+      key: 'fpr3t',
+      text: 'This is the latest version',
+      type: 'unstyled',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {}
+    }
+  ],
+  entityMap: {}
+}
+
 const Frame = styled.div`
   border: 1px solid lightgray;
 `
 
 class NoteEditor extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-      id: null,
-      title: '',
-      content: '',
-      editorState: EditorState.createEmpty()
-    }
-
-    this.onChange = this.onChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
-    this.onDeleteClick = this.onDeleteClick.bind(this)
+  state = {
+    id: null,
+    title: '',
+    editorState: EditorState.createWithContent(convertFromRaw(starter))
   }
 
   componentWillMount() {
@@ -41,38 +47,53 @@ class NoteEditor extends Component {
   componentWillReceiveProps(nextProps) {
     const { notes, selectedNoteId, loading } = nextProps.note
     if (selectedNoteId && !loading) {
+      const { content, title } = notes[selectedNoteId]
+      let editorContent
+      console.log('Compoenent recieves props')
+      console.log(content)
+      if (content === '') {
+        editorContent = EditorState.createEmpty()
+      } else {
+        console.log('So editor is not empty')
+        editorContent = EditorState.createWithContent(
+          convertFromRaw(JSON.parse(content))
+        )
+      }
+      console.log(editorContent.getCurrentContent().getPlainText())
       this.setState({
         id: selectedNoteId,
-        title: notes[selectedNoteId].title,
-        content: notes[selectedNoteId].content
+        title,
+        editorState: editorContent
       })
     }
   }
+
   onEditorChange = editorState => {
     this.setState({
       editorState
     })
   }
 
-  onEditorSubmit = () => {
-    let contentState = this.state.editorState.getCurrentContent()
-    let note = { content: convertToRaw(contentState) }
-    console.log(contentState.getPlainText())
-    note['content'] = JSON.stringify(note.content)
-    console.log(note)
-  }
-
-  onChange(e) {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault()
     const { id, title, content } = this.state
 
-    this.props.editNote(id, title, content)
+    let contentState = this.state.editorState.getCurrentContent()
+    // let note = { content: convertToRaw(contentState) }
+    // TODO get plain text and save as preview
+    // console.log(contentState.getPlainText())
+
+    // note['content'] = JSON.stringify(note.content)
+    // TODO call action creator
+    let editorContent = JSON.stringify(convertToRaw(contentState))
+    console.log(editorContent)
+    this.props.editNote(id, title, editorContent)
   }
-  onDeleteClick(e) {
+  onDeleteClick = e => {
     this.props.deleteNote(this.state.id)
   }
 
@@ -87,12 +108,6 @@ class NoteEditor extends Component {
               value={this.state.title}
               onChange={this.onChange}
               name="title"
-            />
-            <input
-              type="text"
-              onChange={this.onChange}
-              name="content"
-              value={this.state.content}
             />
             <button type="submit">Submit</button>
           </form>
@@ -110,9 +125,7 @@ class NoteEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onEditorChange}
           />
-          <button onClick={this.onEditorSubmit}>Submit</button>
         </Frame>
-        <PageContainer onChange={this.onChange} />
       </div>
     )
   }
