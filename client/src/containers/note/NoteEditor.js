@@ -13,6 +13,7 @@ import {
   convertFromRaw
 } from 'draft-js'
 import styled from 'styled-components'
+import { timingSafeEqual } from 'crypto'
 
 const starter = {
   blocks: [
@@ -65,6 +66,17 @@ class NoteEditor extends Component {
         title,
         editorState: editorContent
       })
+    }
+  }
+
+  handleKeyCommand = command => {
+    const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
+
+    if (newState) {
+      this.onEditorChange(newState)
+      return 'handled'
+    } else {
+      return 'not-handled'
     }
   }
 
@@ -124,6 +136,7 @@ class NoteEditor extends Component {
           <Editor
             editorState={this.state.editorState}
             onChange={this.onEditorChange}
+            handleKeyCommand={this.handleKeyCommand}
           />
         </Frame>
       </div>
