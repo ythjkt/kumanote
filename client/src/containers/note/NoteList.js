@@ -32,7 +32,7 @@ class NoteList extends Component {
             <Note
               key={note.id}
               title={note.title}
-              content={note.content}
+              excerpt={note.excerpt}
               onClick={() => this.onSelectNote(note.id)}
             />
           ))}

@@ -39,7 +39,7 @@ class Note extends Component {
       <NoteBox onClick={this.props.onClick}>
         <Tag>note</Tag>
         <Title>{this.props.title}</Title>
-        <Content>{this.props.content}</Content>
+        <Content>{this.props.excerpt}</Content>
         <Date>2018.01.01 12:00</Date>
       </NoteBox>
     )

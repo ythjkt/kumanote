@@ -65,6 +65,7 @@ router.post(
     let noteFields = {
       user: req.user.id,
       title: req.body.title,
+      excerpt: req.body.excerpt,
       content: req.body.content
     }
 

@@ -98,12 +98,13 @@ class NoteEditor extends Component {
     // let note = { content: convertToRaw(contentState) }
     // TODO get plain text and save as preview
     // console.log(contentState.getPlainText())
+    let excerpt = contentState.getPlainText().substring(0, 100)
 
     // note['content'] = JSON.stringify(note.content)
     // TODO call action creator
     let editorContent = JSON.stringify(convertToRaw(contentState))
     console.log(editorContent)
-    this.props.editNote(id, title, editorContent)
+    this.props.editNote(id, title, excerpt, editorContent)
   }
   onDeleteClick = e => {
     this.props.deleteNote(this.state.id)

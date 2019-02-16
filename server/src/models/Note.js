@@ -10,6 +10,9 @@ const NoteSchema = new Schema({
     type: String,
     required: true
   },
+  excerpt: {
+    type: String
+  },
   content: {
     type: String
   },
