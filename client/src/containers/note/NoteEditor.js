@@ -8,6 +8,7 @@ import PageContainer from './rich/PageContainer'
 import {
   Editor,
   EditorState,
+  ContentState,
   RichUtils,
   convertToRaw,
   convertFromRaw
@@ -50,17 +51,21 @@ class NoteEditor extends Component {
     if (selectedNoteId && !loading) {
       const { content, title } = notes[selectedNoteId]
       let editorContent
-      console.log('Compoenent recieves props')
-      console.log(content)
       if (content === '') {
         editorContent = EditorState.createEmpty()
       } else {
-        console.log('So editor is not empty')
-        editorContent = EditorState.createWithContent(
-          convertFromRaw(JSON.parse(content))
-        )
+        try {
+          editorContent = EditorState.createWithContent(
+            convertFromRaw(JSON.parse(content))
+          )
+        } catch (e) {
+          // If error with convertFromRaw,
+          // Try salvaging by simply creating a new ContentState
+          // assuming content as string
+          let contentState = ContentState.createFromText(content)
+          editorContent = EditorState.createWithContent(contentState)
+        }
       }
-      console.log(editorContent.getCurrentContent().getPlainText())
       this.setState({
         id: selectedNoteId,
         title,
