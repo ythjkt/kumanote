@@ -5,6 +5,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { editNote, deleteNote, getNote } from '../../actions/noteActions'
 import PageContainer from './rich/PageContainer'
+import {
+  Editor,
+  EditorState,
+  RichUtils,
+  convertToRaw,
+  convertFromRaw
+} from 'draft-js'
+import styled from 'styled-components'
+
+const Frame = styled.div`
+  border: 1px solid lightgray;
+`
+
 class NoteEditor extends Component {
   constructor() {
     super()
@@ -12,7 +25,8 @@ class NoteEditor extends Component {
     this.state = {
       id: null,
       title: '',
-      content: ''
+      content: '',
+      editorState: EditorState.createEmpty()
     }
 
     this.onChange = this.onChange.bind(this)
@@ -33,6 +47,19 @@ class NoteEditor extends Component {
         content: notes[selectedNoteId].content
       })
     }
+  }
+  onEditorChange = editorState => {
+    this.setState({
+      editorState
+    })
+  }
+
+  onEditorSubmit = () => {
+    let contentState = this.state.editorState.getCurrentContent()
+    let note = { content: convertToRaw(contentState) }
+    console.log(contentState.getPlainText())
+    note['content'] = JSON.stringify(note.content)
+    console.log(note)
   }
 
   onChange(e) {
@@ -78,7 +105,14 @@ class NoteEditor extends Component {
     return (
       <div>
         {noteContent}
-        <PageContainer />
+        <Frame>
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.onEditorChange}
+          />
+          <button onClick={this.onEditorSubmit}>Submit</button>
+        </Frame>
+        <PageContainer onChange={this.onChange} />
       </div>
     )
   }
