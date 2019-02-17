@@ -16,21 +16,6 @@ import {
 import styled from 'styled-components'
 import debounced from '../../utils/debounced'
 
-const starter = {
-  blocks: [
-    {
-      key: 'fpr3t',
-      text: 'This is the latest version',
-      type: 'unstyled',
-      depth: 0,
-      inlineStyleRanges: [],
-      entityRanges: [],
-      data: {}
-    }
-  ],
-  entityMap: {}
-}
-
 const Frame = styled.div`
   border: 1px solid lightgray;
 `
@@ -40,7 +25,7 @@ class NoteEditor extends Component {
     id: null,
     title: '',
     initialLoad: true,
-    editorState: EditorState.createWithContent(convertFromRaw(starter))
+    editorState: EditorState.createEmpty()
   }
 
   debouncedSave = debounced(2000, () => {
@@ -160,6 +145,13 @@ class NoteEditor extends Component {
             <button type="submit">Submit</button>
           </form>
           <button onClick={this.onDeleteClick}>Delete</button>
+          <Frame>
+            <Editor
+              editorState={this.state.editorState}
+              onChange={this.onEditorChange}
+              handleKeyCommand={this.handleKeyCommand}
+            />
+          </Frame>
         </div>
       )
     } else {
@@ -169,13 +161,6 @@ class NoteEditor extends Component {
       <div>
         {this.props.note.saving ? <span>Saving...</span> : ''}
         {noteContent}
-        <Frame>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onEditorChange}
-            handleKeyCommand={this.handleKeyCommand}
-          />
-        </Frame>
       </div>
     )
   }
