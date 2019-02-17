@@ -39,6 +39,7 @@ class NoteEditor extends Component {
   state = {
     id: null,
     title: '',
+    initialLoad: true,
     editorState: EditorState.createWithContent(convertFromRaw(starter))
   }
 
@@ -64,31 +65,35 @@ class NoteEditor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('will recieve')
     const { notes, selectedNoteId, loading, saving } = nextProps.note
-    if (selectedNoteId && !loading && !saving) {
-      const { content, title } = notes[selectedNoteId]
-      let editorContent
-      if (content === '') {
-        editorContent = EditorState.createEmpty()
-      } else {
-        try {
-          editorContent = EditorState.createWithContent(
-            convertFromRaw(JSON.parse(content))
-          )
-        } catch (e) {
-          // If error with convertFromRaw,
-          // Try salvaging by simply creating a new ContentState
-          // assuming content as string
-          let contentState = ContentState.createFromText(content)
-          editorContent = EditorState.createWithContent(contentState)
+    // Only construct editorState from json
+    // on receiving state for the first time.
+    if (this.state.initialLoad) {
+      if (selectedNoteId && !loading && !saving) {
+        const { content, title } = notes[selectedNoteId]
+        let editorContent
+        if (content === '') {
+          editorContent = EditorState.createEmpty()
+        } else {
+          try {
+            editorContent = EditorState.createWithContent(
+              convertFromRaw(JSON.parse(content))
+            )
+          } catch (e) {
+            // If error with convertFromRaw,
+            // Try salvaging by simply creating a new ContentState
+            // assuming content as string
+            let contentState = ContentState.createFromText(content)
+            editorContent = EditorState.createWithContent(contentState)
+          }
         }
+        this.setState({
+          id: selectedNoteId,
+          title,
+          editorState: editorContent,
+          initialLoad: false
+        })
       }
-      this.setState({
-        id: selectedNoteId,
-        title,
-        editorState: editorContent
-      })
     }
   }
 
