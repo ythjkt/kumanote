@@ -14,7 +14,7 @@ import {
   convertFromRaw
 } from 'draft-js'
 import styled from 'styled-components'
-import { timingSafeEqual } from 'crypto'
+import debounced from '../../utils/debounced'
 
 const starter = {
   blocks: [
@@ -42,13 +42,31 @@ class NoteEditor extends Component {
     editorState: EditorState.createWithContent(convertFromRaw(starter))
   }
 
+  debouncedSave = debounced(2000, () => {
+    console.log('Auto Saving now!')
+    const { id, title, editorState } = this.state
+
+    let contentState = editorState.getCurrentContent()
+    // let note = { content: convertToRaw(contentState) }
+    // TODO get plain text and save as preview
+    // console.log(contentState.getPlainText())
+    let excerpt = contentState.getPlainText().substring(0, 100)
+
+    // note['content'] = JSON.stringify(note.content)
+    // TODO call action creator
+    let editorContent = JSON.stringify(convertToRaw(contentState))
+    this.props.editNote(id, title, excerpt, editorContent)
+  })
+
   componentWillMount() {
+    console.log('will mount')
     this.props.getNote(this.props.match.params.id)
   }
 
   componentWillReceiveProps(nextProps) {
-    const { notes, selectedNoteId, loading } = nextProps.note
-    if (selectedNoteId && !loading) {
+    console.log('will recieve')
+    const { notes, selectedNoteId, loading, saving } = nextProps.note
+    if (selectedNoteId && !loading && !saving) {
       const { content, title } = notes[selectedNoteId]
       let editorContent
       if (content === '') {
@@ -89,6 +107,13 @@ class NoteEditor extends Component {
     this.setState({
       editorState
     })
+    // if content has changed
+    if (
+      editorState.getCurrentContent() !==
+      this.state.editorState.getCurrentContent()
+    ) {
+      this.debouncedSave()
+    }
   }
 
   onChange = e => {
