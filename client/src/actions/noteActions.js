@@ -8,7 +8,8 @@ import {
   DELETE_NOTE,
   SELECT_NOTE,
   NOTE_LOADING,
-  GET_ERRORS
+  GET_ERRORS,
+  NOTE_SAVING
 } from '../const/actionTypes'
 
 // Gets current user's notes
@@ -68,6 +69,7 @@ export const addNote = history => dispatch => {
 }
 
 export const editNote = (id, title, excerpt, content) => dispatch => {
+  dispatch(setNoteSaving())
   axios
     .post('/api/notes', { id, title, excerpt, content })
     .then(res => {
@@ -85,7 +87,6 @@ export const editNote = (id, title, excerpt, content) => dispatch => {
 }
 
 export const selectNote = id => {
-  console.log('SelectNote action is being called')
   return {
     type: SELECT_NOTE,
     payload: {
@@ -114,4 +115,9 @@ export const deleteNote = id => dispatch => {
 // Sets Note loading to true
 export const setNoteLoading = () => ({
   type: NOTE_LOADING
+})
+
+// Sets Note saving to true
+export const setNoteSaving = () => ({
+  type: NOTE_SAVING
 })

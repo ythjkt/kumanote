@@ -4,7 +4,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { editNote, deleteNote, getNote } from '../../actions/noteActions'
-import PageContainer from './rich/PageContainer'
+
 import {
   Editor,
   EditorState,
@@ -137,6 +137,7 @@ class NoteEditor extends Component {
     }
     return (
       <div>
+        {this.props.note.saving ? <span>Saving...</span> : ''}
         {noteContent}
         <Frame>
           <Editor

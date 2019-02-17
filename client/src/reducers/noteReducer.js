@@ -7,13 +7,15 @@ import {
   GET_NOTE,
   DELETE_NOTE,
   SELECT_NOTE,
-  NOTE_LOADING
+  NOTE_LOADING,
+  NOTE_SAVING
 } from '../const/actionTypes'
 
 const initialState = {
   selectedNoteId: null,
   notes: {},
-  loading: false
+  loading: false,
+  saving: false
 }
 
 const note = (state = initialState, action) => {
@@ -27,10 +29,7 @@ const note = (state = initialState, action) => {
         loading: false
       }
     case GET_NOTE:
-      console.log(action.type)
-      console.log(action.payload)
       var notes = { ...state.notes, [action.payload.id]: action.payload }
-      console.log('notes: ')
       return {
         ...state,
         notes,
@@ -42,8 +41,12 @@ const note = (state = initialState, action) => {
         ...state,
         loading: true
       }
+    case NOTE_SAVING:
+      return {
+        ...state,
+        saving: true
+      }
     case SELECT_NOTE:
-      console.log('Select Note reducer ')
       return {
         ...state,
         selectedNoteId: action.payload.id
@@ -57,6 +60,7 @@ const note = (state = initialState, action) => {
     case EDIT_NOTE:
       return {
         ...state,
+        saving: false,
         notes: {
           ...state.notes,
           [action.payload.id]: {
