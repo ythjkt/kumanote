@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { editNote, deleteNote, getNote } from '../../actions/noteActions'
+import { withRouter } from 'react-router-dom'
 
 import {
   Editor,
@@ -128,6 +129,7 @@ class NoteEditor extends Component {
   }
   onDeleteClick = e => {
     this.props.deleteNote(this.state.id)
+    this.props.history.push('/app')
   }
 
   render() {
@@ -170,7 +172,9 @@ const mapStateToProps = state => ({
   note: state.note
 })
 
-export default connect(
-  mapStateToProps,
-  { editNote, deleteNote, getNote }
-)(NoteEditor)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { editNote, deleteNote, getNote }
+  )(NoteEditor)
+)
