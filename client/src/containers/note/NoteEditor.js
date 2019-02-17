@@ -146,7 +146,6 @@ class NoteEditor extends Component {
               name="title"
             />
           </form>
-          <button onClick={this.onDeleteClick}>Delete</button>
           <Frame>
             <Editor
               editorState={this.state.editorState}
@@ -154,6 +153,7 @@ class NoteEditor extends Component {
               handleKeyCommand={this.handleKeyCommand}
             />
           </Frame>
+          <button onClick={this.onDeleteClick}>Delete</button>
         </div>
       )
     } else {
