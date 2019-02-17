@@ -107,8 +107,9 @@ class NoteEditor extends Component {
     }
   }
 
-  onChange = e => {
+  onTitleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
+    this.debouncedSave()
   }
 
   onSubmit = e => {
@@ -137,14 +138,13 @@ class NoteEditor extends Component {
     if (this.state.id) {
       noteContent = (
         <div>
-          <form onSubmit={this.onSubmit}>
+          <form>
             <input
               type="text"
               value={this.state.title}
-              onChange={this.onChange}
+              onChange={this.onTitleChange}
               name="title"
             />
-            <button type="submit">Submit</button>
           </form>
           <button onClick={this.onDeleteClick}>Delete</button>
           <Frame>
