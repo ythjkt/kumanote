@@ -1,9 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-import screenshot from './screenshot.png'
+import screenshot from "./screenshot.png";
 
-import { contentWidth } from '../const/sizes'
+import { contentWidth } from "../const/sizes";
 
 const Title = styled.h1`
   margin: 60px 0 32px;
@@ -12,7 +12,11 @@ const Title = styled.h1`
   text-align: center;
   color: #111;
   font-family: minion-3, serif;
-`
+
+  @media (max-width: 600px) {
+    font-size: 40px;
+  }
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,24 +25,38 @@ const Wrapper = styled.div`
   align-items: center;
   width: ${contentWidth}px;
   margin: auto;
-`
+
+  @media (max-width: 600px) {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+`;
 
 const Paragraph = styled.p`
   text-align: center;
   font-size: 20px;
   line-height: 1.6em;
   margin-bottom: 60px;
-`
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+`;
 
 const Screenshot = styled.img`
   width: 1000px;
   border-radius: 10px;
   margin-bottom: 60px;
-`
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`;
 
 const ContentArea = styled.div`
   background-color: rgba(56, 80, 162, 0.1);
-`
+`;
 
 const Landing = () => (
   <ContentArea>
@@ -56,6 +74,6 @@ const Landing = () => (
       <Screenshot src={screenshot} alt="screenshot" />
     </Wrapper>
   </ContentArea>
-)
+);
 
-export default Landing
+export default Landing;
