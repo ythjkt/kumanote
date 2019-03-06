@@ -28,8 +28,8 @@ app.use(passport.initialize())
 require('./config/passport')(passport)
 
 // API Routes
-app.use('/api/users', users)
-app.use('/api/notes', notes)
+app.use('/users', users)
+app.use('/notes', notes)
 
 const PORT = process.env.PORT || 5000
 
