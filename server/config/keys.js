@@ -1,4 +1,6 @@
 module.exports = {
-  mongoURI: 'mongodb://yuta:kn120f@ds155774.mlab.com:55774/notes',
+  mongoURI: process.env.MONGO_HOST,
+  mongoDB: process.env.MONGO_DB,
+  mongoPort: process.env.MONGO_PORT,
   secretOrKey: 'secret'
 }

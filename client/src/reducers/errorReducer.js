@@ -1,4 +1,4 @@
-import { GET_ERRORS } from '../constants/actionTypes'
+import { GET_ERRORS } from '../const/actionTypes'
 
 export default function(state = {}, action) {
   switch (action.type) {

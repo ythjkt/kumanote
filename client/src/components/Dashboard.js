@@ -1,13 +1,22 @@
 import React from 'react'
 
-import Sidebar from '../components/Sidebar'
-import Main from '../components/Main'
+import Toolbar from './Toolbar'
+import NoteList from '../containers/note/NoteList'
+
+import styled from 'styled-components'
+
+import { contentWidth } from '../const/sizes'
+
+const Wrapper = styled.div`
+  width: ${contentWidth}px;
+  margin: auto;
+`
 
 const Dashboard = () => (
-  <div>
-    <Sidebar />
-    <Main />
-  </div>
+  <Wrapper>
+    <Toolbar />
+    <NoteList />
+  </Wrapper>
 )
 
 export default Dashboard

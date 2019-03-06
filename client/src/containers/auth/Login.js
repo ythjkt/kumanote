@@ -1,10 +1,30 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loginUser } from '../actions/userActions'
+import { loginUser } from '../../actions/userActions'
+
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 // Components
-import TextFieldGroup from './common/TextFieldGroupInput'
+import TextFieldGroup from '../../components/common/TextFieldGroupInput'
+import Button from '../../components/atoms/Button'
+
+const CenterBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+`
+
+const CenterBox = styled.div`
+  width: 320px;
+`
+
+const StyledForm = styled.form`
+  margin-bottom: 20px;
+`
 
 class Login extends Component {
   constructor(props) {
@@ -58,29 +78,32 @@ class Login extends Component {
     const { errors } = this.props
 
     return (
-      <div>
-        <h2>Login</h2>
-        <form onSubmit={this.onSubmit}>
-          <TextFieldGroup
-            type="text"
-            name="email"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.onChange}
-            error={errors.email}
-          />
-          <TextFieldGroup
-            type="text"
-            name="password"
-            placeholder="Password"
-            type="password"
-            value={this.state.password}
-            onChange={this.onChange}
-            error={errors.password}
-          />
-          <button type="submit">Login</button>
-        </form>
-      </div>
+      <CenterBlock>
+        <CenterBox>
+          <StyledForm onSubmit={this.onSubmit}>
+            <TextFieldGroup
+              type="text"
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              onChange={this.onChange}
+              error={errors.email}
+            />
+            <TextFieldGroup
+              name="password"
+              placeholder="Password"
+              type="password"
+              value={this.state.password}
+              onChange={this.onChange}
+              error={errors.password}
+            />
+            <Button type="submit">Login</Button>
+          </StyledForm>
+          <p>
+            Don't have an account? <Link to="/register">Register</Link>
+          </p>
+        </CenterBox>
+      </CenterBlock>
     )
   }
 }

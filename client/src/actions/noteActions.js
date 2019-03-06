@@ -4,11 +4,13 @@ import {
   ADD_NOTE,
   EDIT_NOTE,
   GET_NOTES,
+  GET_NOTE,
   DELETE_NOTE,
   SELECT_NOTE,
   NOTE_LOADING,
-  GET_ERRORS
-} from '../constants/actionTypes'
+  GET_ERRORS,
+  NOTE_SAVING
+} from '../const/actionTypes'
 
 // Gets current user's notes
 export const getNotes = () => dispatch => {
@@ -29,10 +31,30 @@ export const getNotes = () => dispatch => {
     })
 }
 
-export const addNote = () => dispatch => {
+// Gets a single note
+export const getNote = id => dispatch => {
   axios
-    .post('/api/notes', { title: 'untitled', content: '' })
+    .get(`/api/notes/${id}`)
     .then(res => {
+      return dispatch({
+        type: GET_NOTE,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      // TODO dispatch NO_NOTE?
+      // return dispatch({
+      //   type: GET_NOTE,
+      //   payload: null
+      // })
+    })
+}
+
+export const addNote = history => dispatch => {
+  axios
+    .post('/api/notes', { title: 'untitled', excerpt: '', content: '' })
+    .then(res => {
+      history.push(`/app/${res.data.id}`)
       return dispatch({
         type: ADD_NOTE,
         payload: res.data
@@ -46,9 +68,10 @@ export const addNote = () => dispatch => {
     )
 }
 
-export const editNote = (id, title, content) => dispatch => {
+export const editNote = (id, title, excerpt, content) => dispatch => {
+  dispatch(setNoteSaving())
   axios
-    .post('/api/notes', { id, title, content })
+    .post('/api/notes', { id, title, excerpt, content })
     .then(res => {
       return dispatch({
         type: EDIT_NOTE,
@@ -92,4 +115,9 @@ export const deleteNote = id => dispatch => {
 // Sets Note loading to true
 export const setNoteLoading = () => ({
   type: NOTE_LOADING
+})
+
+// Sets Note saving to true
+export const setNoteSaving = () => ({
+  type: NOTE_SAVING
 })

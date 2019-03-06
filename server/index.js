@@ -13,12 +13,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Connect to MongoDB
-const db = require('./config/keys').mongoURI
+const { mongoURI, mongoDB, mongoPort } = require('./config/keys')
+const db = `${mongoURI}:${mongoPort}/${mongoDB}`
+console.log('db', db)
 mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err))
 
@@ -29,8 +28,8 @@ app.use(passport.initialize())
 require('./config/passport')(passport)
 
 // API Routes
-app.use('/api/users', users)
-app.use('/api/notes', notes)
+app.use('/users', users)
+app.use('/notes', notes)
 
 const PORT = process.env.PORT || 5000
 
