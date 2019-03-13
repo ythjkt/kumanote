@@ -2,6 +2,9 @@ version: '3'
 services:
   mongodb:
     image: 'mongo'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=secret
   nginx:
     restart: always
     build:
@@ -13,14 +16,18 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile.dev
+    depends_on:
+      - mongodb
     volumes:
       # Mount everything but node_modules
       - /app/node_modules
       - ./api:/app
     environment:
-      - MONGO_HOST=mongodb://mongodb
+      - MONGO_HOST=mongodb
       - MONGO_DB=kumanote
       - MONGO_PORT=27017
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=secret
   client:
     build:
       context: ./client
