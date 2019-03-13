@@ -11,12 +11,12 @@ services:
       - "3051:80"
   api:
     build:
-      context: ./server
+      context: ./api
       dockerfile: Dockerfile.dev
     volumes:
       # Mount everything but node_modules
       - /app/node_modules
-      - ./server:/app
+      - ./api:/app
     environment:
       - MONGO_HOST=mongodb://mongodb
       - MONGO_DB=kumanote
