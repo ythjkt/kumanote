@@ -10,7 +10,7 @@ Have docker installed
 ## Running The Application Locally with Docker Compose
 ```
 # Run the following command
-# Then go to localhost:3050
+# Then go to localhost:3051
 docker-compose up
 ```
 
