@@ -76,3 +76,22 @@ kubectl apply -f k8s/
 # Get ip and access via given ip
 minikube ip
 ```
+
+## Setting up Google Cloud Platform
+1. Create a project
+2. Enable Kubernetes Engine and create a cluster
+
+### Creating a Service Account for Travis CI
+1. On Google Cloud click create a new service account
+2. Select Kubernetees Engine Admin as the role
+3. Create JSON key
+4. Use travis cli to encrypt the secret key
+```
+docker run -it -v $(pwd):/app ruby:2.3 sh
+gem install travis
+travis login # With github
+# Copy json file into the volumed directory
+cd app
+travis encrypt-file service-account.json -r ythjkt/kumanote
+# DELETE THE ORIGINAL KEY FILE
+```
