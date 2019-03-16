@@ -2,36 +2,51 @@
 A web based note taking app.
 
 ## Getting Started
+These instructions will help you setup the application on your local machine for development and testing purposes. For deploymennt, go to Deployment section.
 
-### Prerequisit
-Have docker installed
-
-
-## Running The Application Locally with Docker Compose
+### Prerequisites
+You will need the following preinstalled on your local machine.
 ```
-# Run the following command
-# Then go to localhost:3051
-docker-compose up
+# For quick docker-compose setup
+Docker
+
+# For setup similar to actual deployment
+VirtualBox
+Minikube
+kubectl
 ```
 
-## Running The Application Locally with Minikube
-This is a long process. To quickly setup a dev environment,
-use docker-compose instead.
+The following is an installation guide for MacOS. For the other OS, check out the [the minikube documentation](https://kubernetes.io/docs/tasks/tools/install-minikube/#install-minikube)
 
-The following process uses helm to install ingress nginx to mimic production setting.
-** Easy fix for ingress rewrite problem
-** Will update as soon as possible.
 ```
+brew install kubectl
+brew cask install minikube
+```
+
+## Installing
+```
+git clone git@github.com:ythjkt/kumanote.git
+```
+
+## Running The Application Locally
+
+### With Docker Compose
+```
+docker-compose up # It will run on localhost:3051
+```
+
+### With Minikube
+This is a long process. To quickly run the application, use docker-compose instead.
+
+```
+# Make sure that minikube is running
 minikube start
-
-# Enable ingress through addons
-minikube addons enable ingress
 
 # Create a secret for mongodb
 kubectl create secret generic mongoauth --from-literal MONGO_USERNAME=root --from-literal MONGO_PASSWORD=secret
 
-# Change ingress-service.yml rewrite syntax to pre 0.22.0 version syntax
-# https://kubernetes.github.io/ingress-nginx/examples/rewrite/
+# Enable ingress through addons
+minikube addons enable ingress
 
 # Deploy ingress nginx related pods
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
@@ -39,10 +54,14 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mast
 # Deploy objects
 kubectl apply -f k8s/
 
+# Replace ingress-service with develop version
+kubectl delete -f k8s/ingress-service.yml
+kubectl apply -f k8s.dev/ingress-service.yml
+
 # Get ip and access via given ip
 minikube ip
 ```
-
+## Deployment
 ** Currently this does not work.
 The following also assumes that you are using a mac.
 ```
