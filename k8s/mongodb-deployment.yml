@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: mongodb
+  template:
+    metadata:
+      labels:
+        component: mongodb
+    spec:
+      volumes:
+        - name: mongodb-storage
+          persistentVolumeClaim:
+            # References claim made by database-persistent-volume-claim.yml
+            claimName: database-persistent-volume-claim
+      containers:
+        - name: mongodb
+          image: mongo
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-storage
+              mountPath: /data/db
+          env:
+            # Init mongo container with root user
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongoauth
+                  key: MONGO_USERNAME
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongoauth
+                  key: MONGO_PASSWORD
