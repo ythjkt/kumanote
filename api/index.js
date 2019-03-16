@@ -13,11 +13,24 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Connect to MongoDB
-const { mongoURI, mongoDB, mongoPort } = require('./config/keys')
-const db = `${mongoURI}:${mongoPort}/${mongoDB}`
-console.log('db', db)
+const {
+  mongoHost,
+  mongoDB,
+  mongoPort,
+  mongoUser,
+  mongoPassword
+} = require('./config/keys')
+
+const options = {
+  useNewUrlParser: true,
+  user: mongoUser,
+  pass: mongoPassword,
+  dbName: mongoDB
+}
+const db = `mongodb://${mongoHost}:${mongoPort}`
+
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(db, options)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err))
 
