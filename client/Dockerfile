@@ -1,7 +1,7 @@
 # Two step build
 # Create production build of react with node
 # Then serve built files from nginx server
-FROM node:alpine as builder
+FROM node:10.15-alpine as builder
 WORKDIR /app
 COPY ./package.json .
 RUN npm install
