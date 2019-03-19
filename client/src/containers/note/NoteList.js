@@ -24,20 +24,24 @@ class NoteList extends Component {
   }
 
   render() {
-    const { notes } = this.props.note
-    return (
-      <StyledNoteList>
-        {notes &&
-          Object.values(notes).map(note => (
+    let { notes } = this.props.note
+    if (notes) {
+      notes = Object.values(notes)
+        .sort((a, b) => b.updated - a.updated) // Order by newest
+        .map(note => {
+          let updated = new Date(note.updated).toLocaleString()
+          return (
             <Note
               key={note.id}
               title={note.title}
               excerpt={note.excerpt}
+              updated={updated}
               onClick={() => this.onSelectNote(note.id)}
             />
-          ))}
-      </StyledNoteList>
-    )
+          )
+        })
+    }
+    return <StyledNoteList>{notes}</StyledNoteList>
   }
 }
 

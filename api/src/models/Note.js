@@ -16,9 +16,13 @@ const NoteSchema = new Schema({
   content: {
     type: String
   },
-  date: {
-    type: Date,
-    default: Date.now
+  created: {
+    // Unix Timestamp
+    type: Number
+  },
+  updated: {
+    // Unix Timestamp
+    type: Number
   }
 })
 
