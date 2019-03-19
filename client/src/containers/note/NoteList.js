@@ -28,14 +28,18 @@ class NoteList extends Component {
     return (
       <StyledNoteList>
         {notes &&
-          Object.values(notes).map(note => (
-            <Note
-              key={note.id}
-              title={note.title}
-              excerpt={note.excerpt}
-              onClick={() => this.onSelectNote(note.id)}
-            />
-          ))}
+          Object.values(notes).map(note => {
+            let updated = new Date(note.updated).toLocaleString()
+            return (
+              <Note
+                key={note.id}
+                title={note.title}
+                excerpt={note.excerpt}
+                updated={updated}
+                onClick={() => this.onSelectNote(note.id)}
+              />
+            )
+          })}
       </StyledNoteList>
     )
   }
