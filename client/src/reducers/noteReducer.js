@@ -66,7 +66,9 @@ const note = (state = initialState, action) => {
           [action.payload.id]: {
             id: action.payload.id,
             title: action.payload.title,
-            content: action.payload.content
+            content: action.payload.content,
+            excerpt: action.payload.excerpt,
+            updated: action.payload.updated
           }
         }
       }

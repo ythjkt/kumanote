@@ -1,0 +1,22 @@
+# ingress nginx has to be pre-installed for this object
+# https://github.com/kubernetes/ingress-nginx
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # After mathcing, remove the path
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/
+            backend:
+              serviceName: api-cluster-ip-service
+              servicePort: 5000

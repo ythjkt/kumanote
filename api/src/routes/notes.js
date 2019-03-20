@@ -66,7 +66,8 @@ router.post(
       user: req.user.id,
       title: req.body.title,
       excerpt: req.body.excerpt,
-      content: req.body.content
+      content: req.body.content,
+      updated: req.body.updated
     }
 
     Note.findById(req.body.id).then(note => {
