@@ -1,6 +1,22 @@
-## Deployment
-** Currently this does not work.
-The following also assumes that you are using a mac.
+# Deployment
+## Overview
+Currently this project is deployed on Google Cloud Platform. For production setup it uses the following applications.
+
+```sh
+- Github      # Repository
+- Travis CI   # CI/CD 
+- Dockerhub   # Hosting production images
+```
+## Steps
+1. Create Github repository
+2. [Connect Github to Travis CI](#connect-github-to-travis-ci)
+3. Setup Google Cloud
+    1. Create a project
+    2. Enable Kubernetes Engine
+    3. Install neccessary objects
+4. Merge changes to master branch # Then let travis ci take care of the rest!
+
+### Connect Github to Travis CI
 ```
 # Install helm if you do not have it
 brew install kubernetes-helm
