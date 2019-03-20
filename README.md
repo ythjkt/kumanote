@@ -72,10 +72,10 @@ minikube ip
 
 ## Development
 ### Technologies
-- React: Frontend
-- Nginx: Client server for React in production
-- Express: API Server
-- MongoDB: Database
+- **React**: Frontend
+- **Nginx**: Client server for React in production
+- **Express**: API Server
+- **MongoDB**: Database
 
 ### Directory Structure
 ```sh

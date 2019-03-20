@@ -1,3 +1,7 @@
+'''
+* Running this script will update the latest image used in production.
+* Do not use.
+'''
 SHA=$(git rev-parse HEAD)
 # Build docker images and tag with git SHA
 docker build -t ythjkt/kumanote-client:latest -t ythjkt/kumanote-client:$SHA -f ./client/Dockerfile ./client
