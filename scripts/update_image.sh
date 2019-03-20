@@ -13,3 +13,6 @@ docker push ythjkt/kumanote-api:latest
 
 docker push ythjkt/kumanote-client:$SHA
 docker push ythjkt/kumanote-api:$SHA
+
+kubectl set image deployments/api-deployment api=ythjkt/kumanote-api:$SHA
+kubectl set image deployments/client-deployment client=ythjkt/kumanote-client:$SHA
