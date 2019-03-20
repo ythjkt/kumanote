@@ -2,20 +2,20 @@
 A web based note taking app.
 
 ## Table of Content
-- Setting Up
-  - Prerequietes
-  - Running the app locally
-- Development
-  - Technologies
-  - Directory structure
-- Deployment
+- [Setting Up](#setting-up)
+  - [Prerequietes](#prerequietes)
+  - [Running the app locally](#running-the-app-locally)
+- [Development](#development)
+  - [Technologies](#technologies)
+  - [Directory structure](#directory-structure)
+- [Deployment](docs/deployment.md)
 
-These instructions will help you setup the application on your local machine for development and testing purposes. For deploymennt, go to [docs/deployment.md](docs/deployment.md).
+These instructions will help you setup the application on your local machine for development and testing purposes.
 
 ## Setting Up
 ### Prerequisites
 You will need the following preinstalled on your local machine.
-```
+```sh
 # For quick docker-compose setup
 Docker
 
@@ -27,26 +27,26 @@ kubectl
 
 The following is an installation guide for MacOS. For the other OS, check out the [the minikube documentation](https://kubernetes.io/docs/tasks/tools/install-minikube/#install-minikube)
 
-```
+```sh
 brew cask install virtualbox
 brew install kubectl
 brew cask install minikube
 ```
 
 ### Running the app locally
-```
+```sh
 git clone git@github.com:ythjkt/kumanote.git
 ```
 
 #### With Docker Compose
-```
+```sh
 docker-compose up # It will run on localhost:3051
 ```
 
 #### With Minikube
 This is a long process. To quickly run the application, use docker-compose instead.
 
-```
+```sh
 # Make sure that minikube is running
 minikube start
 
@@ -78,17 +78,13 @@ minikube ip
 - MongoDB: Database
 
 ### Directory Structure
-```
+```sh
 kumanote/
-├── api # api server
-├── client # React app
-├── deploy.sh 
-├── docker-compose.yml
+├── api       # api server
+├── client    # React app
 ├── docs
-├── k8s # Configs for Kubernetes Objects
+├── k8s       # Configs for Kubernetes Objects
 ├── k8s.dev
-├── nginx # Load balancer for local development
-└── service-account.json.enc # Encrypted access token for GC used by Travis
+├── scripts   # Bash scripts
+└── nginx     # Load balancer for local env
 ```
-
-7 directories, 5 files
