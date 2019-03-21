@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: ythjkt-com-tls
+spec:
+  secretName: ythjkt-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: ythjkt.com
+  dnsNames:
+    - ythjkt.com
+    - www.ythjkt.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - ythjkt.com
+          - www.ythjkt.com
