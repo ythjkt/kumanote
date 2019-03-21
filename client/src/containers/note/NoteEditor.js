@@ -18,7 +18,7 @@ import styled from 'styled-components'
 import debounced from '../../utils/debounced'
 
 const Frame = styled.div`
-  border: 1px solid lightgray;
+  border: none;
 `
 
 const Input = styled.input`
@@ -28,12 +28,11 @@ const Input = styled.input`
   font-size: 16px;
   height: 40px;
   color: rgb(46, 49, 146);
-  border: 1px solid #eaeaf4;
-  border-radius: 2px;
+  border: none;
   box-sizing: border-box;
 
   :focus {
-    border: 1px solid rgb(46, 49, 146);
+    border-bottom: 1px solid rgb(46, 49, 146);
     outline: none;
   }
 `
