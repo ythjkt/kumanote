@@ -5,10 +5,10 @@ module.exports = function validateNoteInput(data) {
   const errors = {}
   const { title = '' } = data
 
-  // Validate `title`
-  if (Validator.isEmpty(title)) {
-    errors.title = 'Title field is required'
-  }
+  // // Validate `title`
+  // if (Validator.isEmpty(title)) {
+  //   errors.title = 'Title field is required'
+  // }
 
   return {
     errors,

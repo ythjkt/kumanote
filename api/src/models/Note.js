@@ -7,8 +7,7 @@ const NoteSchema = new Schema({
     ref: 'users'
   },
   title: {
-    type: String,
-    required: true
+    type: String
   },
   excerpt: {
     type: String
