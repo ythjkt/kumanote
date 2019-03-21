@@ -18,6 +18,7 @@ Once the master branch is updated, travis ci runs a test defined in .travis.yml 
 3. [Link Github to Travis CI](#linking-github-to-travis-ci)
 4. [Imperatively create objects on Google Cloud](#creating-objects-on-google-cloud)
 5. Merge changes to master branch # Then let travis ci take care of the rest!
+6. [Setup domain and https](#setting-up-domain-and-https)
 
 ### Linking Github to Travis CI
 1. Go to travis ci and enable the github repository
@@ -99,3 +100,15 @@ For more info on Heml and RBAC check [Helm and RBAC](https://helm.sh/docs/using_
 ```sh
 helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
 ```
+
+### Setting Up Domain and Https
+1. Create A record and CNAME on google domains
+
+| Name | Type  | TTL | Data     |
+|------|-------|-----|----------|
+| @    | A     | 1h  | [IP]     |
+| www  | CNAME | 1h  | [domain] |
+
+2. Install [Cert Manager](https://docs.cert-manager.io/en/latest/getting-started/install.html) with Helm
+3. Create ClusterIssuer (issuer.yml) and Certificate (certificate.yml) in k8s
+4. Update ingress-service.yml
