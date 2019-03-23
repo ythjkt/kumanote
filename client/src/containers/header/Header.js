@@ -9,24 +9,14 @@ import Button from '../../components/atoms/Button'
 
 import { wrapperWidth } from '../../const/sizes'
 
-const StyledLink = styled(Link)`
-  font-weight: 600;
-  font-size: 16px;
-  padding-right: 24px;
-  text-decoration: none;
-  color: black;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`
-
 const StyledHeader = styled.div`
   height: 60px;
   padding: 10px 24px;
   background-color: white;
   display: flex;
   align-items: center;
+  position: fixed;
+  width: 100%;
 `
 
 const Wrapper = styled.div`
@@ -43,6 +33,10 @@ const FlexBox = styled.div`
   align-items: center;
 `
 
+const ThisButton = styled(Button)`
+  margin-right: 24px;
+`
+
 class Header extends Component {
   onLogoutClick = e => {
     e.preventDefault()
@@ -55,18 +49,20 @@ class Header extends Component {
 
     const authLinks = (
       <FlexBox>
-        <StyledLink to="/" onClick={this.onLogoutClick}>
-          Logout
-        </StyledLink>
+        <Button as={Link} to="/login">
+          Login
+        </Button>
       </FlexBox>
     )
 
     const guestLinks = (
       <FlexBox>
-        <StyledLink to="/login">Login</StyledLink>
-        <Button as={Link} to="/register">
-          Register
-        </Button>
+        <ThisButton as={Link} to="/login">
+          Login
+        </ThisButton>
+        <ThisButton as={Link} primary to="/register">
+          Create an account
+        </ThisButton>
       </FlexBox>
     )
 

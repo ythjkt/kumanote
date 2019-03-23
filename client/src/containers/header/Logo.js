@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const StyledLogo = styled(Link)`
-  margin-right: auto;
   display: flex;
   align-items: center;
 
@@ -14,10 +13,12 @@ const StyledLogo = styled(Link)`
   }
 `
 
-export default function Logo() {
-  return (
+const Logo = ({ className }) => (
+  <div className={className}>
     <StyledLogo to="/app">
       <img src="/img/logo.svg" alt="" />
     </StyledLogo>
-  )
-}
+  </div>
+)
+
+export default Logo
