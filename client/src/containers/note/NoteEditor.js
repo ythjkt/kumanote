@@ -18,7 +18,23 @@ import styled from 'styled-components'
 import debounced from '../../utils/debounced'
 
 const Frame = styled.div`
-  border: 1px solid lightgray;
+  border: none;
+`
+
+const Input = styled.input`
+  width: ${props => (props.full ? '100%' : null)};
+  display: block;
+  padding: 8px 16px;
+  font-size: 16px;
+  height: 40px;
+  color: rgb(46, 49, 146);
+  border: none;
+  box-sizing: border-box;
+
+  :focus {
+    border-bottom: 1px solid rgb(46, 49, 146);
+    outline: none;
+  }
 `
 
 class NoteEditor extends Component {
@@ -139,11 +155,12 @@ class NoteEditor extends Component {
       noteContent = (
         <div>
           <form>
-            <input
+            <Input
               type="text"
               value={this.state.title}
               onChange={this.onTitleChange}
               name="title"
+              placeholder="Title"
             />
           </form>
           <Frame>
