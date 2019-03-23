@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/userActions'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import Logo from '../../components/logo/'
 import Button from '../../components/atoms/Button'
-
-import { wrapperWidth } from '../../const/sizes'
 
 const StyledHeader = styled.div`
   height: 60px;
@@ -17,6 +15,8 @@ const StyledHeader = styled.div`
   align-items: center;
   position: fixed;
   width: 100%;
+  border-bottom: ${props =>
+    props.shadow ? '1px solid ' + props.theme.border.default : 'none'};
 `
 
 const Wrapper = styled.div`
@@ -47,6 +47,9 @@ class Header extends Component {
   render() {
     const { isAuthenticated, user } = this.props.user
 
+    const pathname = this.props.location && this.props.location.pathname
+    let isHome = pathname == '/' || pathname == '/about'
+
     const authLinks = (
       <FlexBox>
         <Button as={Link} to="/" onClick={this.onLogoutClick}>
@@ -60,14 +63,15 @@ class Header extends Component {
         <ThisButton as={Link} to="/login">
           Login
         </ThisButton>
-        <ThisButton as={Link} primary to="/register">
+        {/*passes true as string to avoid react-router raising error. (styled-component issuse #1198) */}
+        <ThisButton as={Link} primary="true" to="/register">
           Create an account
         </ThisButton>
       </FlexBox>
     )
 
     return (
-      <StyledHeader>
+      <StyledHeader shadow={!isHome}>
         <Wrapper>
           <Logo />
           {isAuthenticated ? authLinks : guestLinks}
@@ -81,7 +85,9 @@ const mapStateToProps = state => ({
   user: state.user
 })
 
-export default connect(
-  mapStateToProps,
-  { logoutUser }
-)(Header)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { logoutUser }
+  )(Header)
+)

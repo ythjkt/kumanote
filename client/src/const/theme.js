@@ -10,6 +10,9 @@ const theme = {
     placeholder: '#DCDBDB',
     reverse: '#FFFFFF'
   },
+  border: {
+    default: '#F4F4F5'
+  },
   warn: {
     default: '#E22F2F'
   },
