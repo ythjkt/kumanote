@@ -1,24 +1,25 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import { logoutUser } from "../../actions/userActions";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { logoutUser } from '../../actions/userActions'
+import { Link } from 'react-router-dom'
 
-import Logo from "./Logo";
+import Logo from './Logo'
+import Button from '../../components/atoms/Button'
 
-import { wrapperWidth } from "../../const/sizes";
+import { wrapperWidth } from '../../const/sizes'
 
 const StyledLink = styled(Link)`
   font-weight: 600;
   font-size: 16px;
-  padding-left: 24px;
+  padding-right: 24px;
   text-decoration: none;
   color: black;
 
   &:hover {
     text-decoration: underline;
   }
-`;
+`
 
 const StyledHeader = styled.div`
   height: 60px;
@@ -26,30 +27,31 @@ const StyledHeader = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
-`;
+`
 
 const Wrapper = styled.div`
-  width: ${wrapperWidth}px;
+  flex: 1;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin: auto;
   align-items: center;
-`;
+`
 
 const FlexBox = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-`;
+`
 
 class Header extends Component {
   onLogoutClick = e => {
-    e.preventDefault();
+    e.preventDefault()
 
-    this.props.logoutUser();
-  };
+    this.props.logoutUser()
+  }
 
   render() {
-    const { isAuthenticated, user } = this.props.user;
+    const { isAuthenticated, user } = this.props.user
 
     const authLinks = (
       <FlexBox>
@@ -57,14 +59,16 @@ class Header extends Component {
           Logout
         </StyledLink>
       </FlexBox>
-    );
+    )
 
     const guestLinks = (
       <FlexBox>
-        <StyledLink to="/register">Register</StyledLink>
         <StyledLink to="/login">Login</StyledLink>
+        <Button as={Link} to="/register">
+          Register
+        </Button>
       </FlexBox>
-    );
+    )
 
     return (
       <StyledHeader>
@@ -73,15 +77,15 @@ class Header extends Component {
           {isAuthenticated ? authLinks : guestLinks}
         </Wrapper>
       </StyledHeader>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => ({
   user: state.user
-});
+})
 
 export default connect(
   mapStateToProps,
   { logoutUser }
-)(Header);
+)(Header)
