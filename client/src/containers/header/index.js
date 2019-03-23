@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/userActions'
 import { Link } from 'react-router-dom'
 
-import Logo from './Logo'
+import Logo from '../../components/logo/'
 import Button from '../../components/atoms/Button'
 
 import { wrapperWidth } from '../../const/sizes'

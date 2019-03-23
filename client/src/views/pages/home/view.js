@@ -3,7 +3,7 @@ import theme from '../../../const/theme'
 import styled from 'styled-components'
 
 import Button from '../../../components/atoms/Button'
-import Logo from '../../../containers/header/Logo'
+import Logo from '../../../components/logo/'
 
 import { FlexCol, FlexRow, Section, ImageFrame, SectionTitle } from './style'
 

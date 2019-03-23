@@ -15,7 +15,7 @@ import Dashboard from './components/Dashboard'
 import Register from './containers/auth/Register'
 import Login from './containers/auth/Login'
 import NoteEditor from './containers/note/NoteEditor'
-import Header from './containers/header/Header'
+import Header from './containers/header'
 
 class Routes extends Component {
   render() {
