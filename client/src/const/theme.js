@@ -7,10 +7,15 @@ const theme = {
   text: {
     default: '#111111',
     secondary: '#646464',
-    placeholder: '#DCDBDB'
+    placeholder: '#DCDBDB',
+    reverse: '#FFFFFF'
   },
   warn: {
     default: '#E22F2F'
+  },
+  font: {
+    primary: "'Open Sans', sans-serif",
+    secondary: "'Roboto', sans-serif"
   }
 }
 
