@@ -9,7 +9,7 @@ import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
 import { setCurrentUser, logoutUser } from './actions/userActions'
 
-import App from './components/App'
+import Routes from './routes'
 
 const initialState = {}
 
@@ -43,6 +43,14 @@ if (localStorage.jwtToken) {
     // Redirect to home
     window.location.href = '/'
   }
+}
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Routes />
+    </Provider>
+  )
 }
 
 render(
