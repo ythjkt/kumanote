@@ -49,8 +49,8 @@ class Header extends Component {
 
     const authLinks = (
       <FlexBox>
-        <Button as={Link} to="/login">
-          Login
+        <Button as={Link} to="/" onClick={this.onLogoutClick}>
+          Logout
         </Button>
       </FlexBox>
     )
