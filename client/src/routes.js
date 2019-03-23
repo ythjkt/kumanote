@@ -13,7 +13,7 @@ import PrivateRoute from './containers/auth/PrivateRoute'
 import Home from './views/pages/home'
 import Dashboard from './components/Dashboard'
 import Register from './containers/auth/Register'
-import Login from './containers/auth/Login'
+import Login from './views/login/'
 import NoteEditor from './containers/note/NoteEditor'
 import Header from './containers/header'
 

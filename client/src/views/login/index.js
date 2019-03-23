@@ -3,28 +3,14 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loginUser } from '../../actions/userActions'
 
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 // Components
 import TextFieldGroup from '../../components/common/TextFieldGroupInput'
 import Button from '../../components/atoms/Button'
 
-const CenterBlock = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-`
-
-const CenterBox = styled.div`
-  width: 320px;
-`
-
-const StyledForm = styled.form`
-  margin-bottom: 20px;
-`
+// Styled Components
+import { CenterBlock, CenterBox, StyledForm } from './style'
 
 class Login extends Component {
   constructor(props) {
