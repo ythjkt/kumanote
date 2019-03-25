@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
@@ -10,21 +9,8 @@ import { registerUser } from '../../actions/userActions'
 import TextFieldGroup from '../../components/common/TextFieldGroupInput'
 import { Button } from '../../components/button/'
 
-const CenterBlock = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-`
-
-const CenterBox = styled.div`
-  width: 320px;
-`
-
-const StyledForm = styled.form`
-  margin-bottom: 20px;
-`
+// Styled Components
+import { CenterBlock, CenterBox, StyledForm } from './style'
 
 class Register extends Component {
   constructor(props) {
