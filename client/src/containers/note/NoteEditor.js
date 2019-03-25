@@ -37,6 +37,10 @@ const Input = styled.input`
   }
 `
 
+const Wrapper = styled.div`
+  padding-top: 120px;
+`
+
 class NoteEditor extends Component {
   state = {
     id: null,
@@ -177,10 +181,10 @@ class NoteEditor extends Component {
       noteContent = <div>Blank</div>
     }
     return (
-      <div>
+      <Wrapper>
         {this.props.note.saving ? <span>Saving...</span> : ''}
         {noteContent}
-      </div>
+      </Wrapper>
     )
   }
 }

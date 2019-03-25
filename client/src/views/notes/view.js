@@ -4,49 +4,23 @@ import PropTypes from 'prop-types'
 import { getNotes, selectNote, addNote } from '../../actions/noteActions'
 import { withRouter } from 'react-router-dom'
 
-import styled from 'styled-components'
-import theme from '../../const/theme'
-
 // Components
 import { NoteIcon } from '../../components/icon/'
 import { Button } from '../../components/button/'
 
-const FlexCol = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-`
+// Styled components
+import {
+  FlexCol,
+  FlexRow,
+  Title,
+  Updated,
+  Excerpt,
+  StyledNotePanel,
+  Wrapper,
+  StyledNoteList
+} from './style'
 
-const FlexRow = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-const Title = styled.h1`
-  font-size: 16px;
-`
-
-const Updated = styled.span`
-  font-size: 16px;
-  margin-right: 16px;
-`
-
-const Excerpt = styled.p`
-  font-size: 16px;
-  color: ${theme.text.placeholder};
-`
-
-const StyledNotePanel = styled.section`
-  padding: 16px 0;
-  border-bottom: 1px solid ${theme.border.default};
-`
-
-const Wrapper = styled.div`
-  padding: 0 16px;
-`
-
-export const NotePanel = props => {
+const NoteListItem = props => {
   return (
     <StyledNotePanel onClick={props.onClick}>
       <FlexRow>
@@ -58,15 +32,13 @@ export const NotePanel = props => {
           <Title>{props.title}</Title>
           <FlexRow>
             <Updated>{props.updated}</Updated>
-            <Excerpt>Content is here</Excerpt>
+            <Excerpt>{props.excerpt}</Excerpt>
           </FlexRow>
         </FlexCol>
       </FlexRow>
     </StyledNotePanel>
   )
 }
-
-const StyledNoteList = styled.div``
 
 class NoteListClass extends Component {
   componentDidMount() {
@@ -85,7 +57,7 @@ class NoteListClass extends Component {
         .map(note => {
           let updated = new Date(note.updated).toLocaleString()
           return (
-            <NotePanel
+            <NoteListItem
               key={note.id}
               title={note.title}
               excerpt={note.excerpt}
