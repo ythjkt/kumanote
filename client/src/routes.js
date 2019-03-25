@@ -11,7 +11,7 @@ import theme from './const/theme'
 // Import Componenets
 import PrivateRoute from './containers/auth/PrivateRoute'
 import Home from './views/pages/home'
-import Dashboard from './components/Dashboard'
+import Dashboard from './views/notes/'
 import Register from './views/register'
 import Login from './views/login/'
 import NoteEditor from './containers/note/NoteEditor'
