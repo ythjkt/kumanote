@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import theme from '../../const/theme'
 
-import { NotePanel } from './view'
+import { NoteList, AddNote } from './view'
 
 const Main = styled.main`
   padding-top: 100px;
@@ -42,9 +42,8 @@ const Dashboard = () => (
       <FlexCol>
         <SectionTitle>Home</SectionTitle>
         <SectionSubtitle>All</SectionSubtitle>
-        <NotePanel />
-        <NotePanel />
-        <NotePanel />
+        <AddNote />
+        <NoteList />
       </FlexCol>
     </MainContainer>
   </Main>

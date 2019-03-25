@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { getNotes, selectNote } from '../../actions/noteActions'
+import { getNotes, selectNote, addNote } from '../../actions/noteActions'
 import { withRouter } from 'react-router-dom'
 
 import styled from 'styled-components'
@@ -9,6 +9,7 @@ import theme from '../../const/theme'
 
 // Components
 import { NoteIcon } from '../../components/icon/'
+import { Button } from '../../components/button/'
 
 const FlexCol = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ const Title = styled.h1`
   font-size: 16px;
 `
 
-const Date = styled.span`
+const Updated = styled.span`
   font-size: 16px;
   margin-right: 16px;
 `
@@ -45,18 +46,18 @@ const Wrapper = styled.div`
   padding: 0 16px;
 `
 
-export const NotePanel = () => {
+export const NotePanel = props => {
   return (
-    <StyledNotePanel>
+    <StyledNotePanel onClick={props.onClick}>
       <FlexRow>
         <Wrapper>
           <NoteIcon />
         </Wrapper>
 
         <FlexCol>
-          <Title>Title is going to be here</Title>
+          <Title>{props.title}</Title>
           <FlexRow>
-            <Date>2017.12.12</Date>
+            <Updated>{props.updated}</Updated>
             <Excerpt>Content is here</Excerpt>
           </FlexRow>
         </FlexCol>
@@ -65,52 +66,7 @@ export const NotePanel = () => {
   )
 }
 
-const Content = styled.p`
-  font-size: 16px;
-`
-const NoteBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  width: 320px;
-  height: 240px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  box-sizing: border-box;
-  cursor: pointer;
-`
-
-const Tag = styled.span`
-  font-size: 12px;
-  color: #3850a2;
-`
-
-class Note extends Component {
-  render() {
-    return (
-      <NoteBox onClick={this.props.onClick}>
-        <Tag>note</Tag>
-        <Title>{this.props.title}</Title>
-        <Content>{this.props.excerpt}</Content>
-        <Date>{this.props.updated}</Date>
-      </NoteBox>
-    )
-  }
-}
-
-Note.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
-}
-
-export default Note
-
-const StyledNoteList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: 40px;
-  grid-column-gap: 40px;
-`
+const StyledNoteList = styled.div``
 
 class NoteListClass extends Component {
   componentDidMount() {
@@ -129,7 +85,7 @@ class NoteListClass extends Component {
         .map(note => {
           let updated = new Date(note.updated).toLocaleString()
           return (
-            <Note
+            <NotePanel
               key={note.id}
               title={note.title}
               excerpt={note.excerpt}
@@ -160,4 +116,15 @@ export const NoteList = withRouter(
       getNotes
     }
   )(NoteListClass)
+)
+
+const AddNoteComponent = ({ addNote, history }) => (
+  <Button onClick={() => addNote(history)}>New Note</Button>
+)
+
+export const AddNote = withRouter(
+  connect(
+    null,
+    { addNote }
+  )(AddNoteComponent)
 )
