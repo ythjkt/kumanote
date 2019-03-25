@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import theme from '../../../const/theme'
 import styled from 'styled-components'
 
-import Button from '../../../components/atoms/Button'
+import { Button } from '../../../components/button/'
 import Logo from '../../../components/logo/'
 
 import { FlexCol, FlexRow, Section, ImageFrame, SectionTitle } from './style'

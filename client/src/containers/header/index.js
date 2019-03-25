@@ -5,7 +5,7 @@ import { logoutUser } from '../../actions/userActions'
 import { Link, withRouter } from 'react-router-dom'
 
 import Logo from '../../components/logo/'
-import Button from '../../components/atoms/Button'
+import { Button } from '../../components/button/'
 
 const StyledHeader = styled.div`
   height: 60px;

@@ -8,7 +8,7 @@ import { registerUser } from '../../actions/userActions'
 
 // Components
 import TextFieldGroup from '../../components/common/TextFieldGroupInput'
-import Button from '../../components/atoms/Button'
+import { Button } from '../../components/button/'
 
 const CenterBlock = styled.div`
   display: flex;
