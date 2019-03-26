@@ -76,7 +76,6 @@ export const addNote = history => dispatch => {
 
 export const editNote = (id, title, excerpt, content) => dispatch => {
   dispatch(setNoteSaving())
-  console.log(excerpt)
   axios
     .post('/api/notes', {
       id,

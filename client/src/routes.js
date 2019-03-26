@@ -12,7 +12,7 @@ import Home from './views/pages/home'
 import Dashboard from './views/notes/'
 import Register from './views/register'
 import Login from './views/login/'
-import NoteEditor from './views/noteEditor/'
+import NoteEditor from './views/note/'
 import Header from './containers/header'
 
 class Routes extends Component {
