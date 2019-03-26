@@ -17,12 +17,12 @@ const Dashboard = () => (
   <Main>
     <MainContainer>
       <FlexCol>
-        <AddNote />
-      </FlexCol>
-      <FlexCol>
         <SectionTitle>Home</SectionTitle>
         <SectionSubtitle>All</SectionSubtitle>
         <NoteList />
+      </FlexCol>
+      <FlexCol>
+        <AddNote />
       </FlexCol>
     </MainContainer>
   </Main>
