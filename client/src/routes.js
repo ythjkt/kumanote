@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import { ThemeProvider } from 'styled-components'
@@ -14,7 +12,7 @@ import Home from './views/pages/home'
 import Dashboard from './views/notes/'
 import Register from './views/register'
 import Login from './views/login/'
-import NoteEditor from './containers/note/NoteEditor'
+import NoteEditor from './views/noteEditor/'
 import Header from './containers/header'
 
 class Routes extends Component {
