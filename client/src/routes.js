@@ -13,7 +13,7 @@ import Dashboard from './views/notes/'
 import Register from './views/register'
 import Login from './views/login/'
 import NoteEditor from './views/note/'
-import Header from './containers/header'
+import Header from './views/header'
 
 class Routes extends Component {
   render() {
