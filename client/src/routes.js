@@ -7,7 +7,7 @@ import GlobalStyle from './reset.css'
 import theme from './const/theme'
 
 // Import Componenets
-import PrivateRoute from './containers/auth/PrivateRoute'
+import PrivateRoute from './views/privateRoute/'
 import Home from './views/pages/home'
 import Dashboard from './views/notes/'
 import Register from './views/register'
