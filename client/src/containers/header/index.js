@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { logoutUser } from '../../actions/userActions'
 import { Link, withRouter } from 'react-router-dom'
 
 import Logo from '../../components/logo/'
 import { Button } from '../../components/button/'
+import Avatar from '../../components/avatar/'
 
 const StyledHeader = styled.div`
   height: 60px;
@@ -38,12 +38,6 @@ const ThisButton = styled(Button)`
 `
 
 class Header extends Component {
-  onLogoutClick = e => {
-    e.preventDefault()
-
-    this.props.logoutUser()
-  }
-
   render() {
     const { isAuthenticated, user } = this.props.user
 
@@ -52,9 +46,7 @@ class Header extends Component {
 
     const authLinks = (
       <FlexBox>
-        <Button as={Link} to="/" onClick={this.onLogoutClick}>
-          Logout
-        </Button>
+        <Avatar />
       </FlexBox>
     )
 
@@ -85,9 +77,4 @@ const mapStateToProps = state => ({
   user: state.user
 })
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { logoutUser }
-  )(Header)
-)
+export default withRouter(connect(mapStateToProps)(Header))
