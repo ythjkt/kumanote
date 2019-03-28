@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom'
 
 import Logo from '../../components/logo/'
 import { Button } from '../../components/button/'
-import Avatar from '../../components/avatar/'
+import Avatar from '../../views/avatar/'
 
 const StyledHeader = styled.div`
   height: 60px;

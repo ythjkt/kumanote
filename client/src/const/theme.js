@@ -2,7 +2,8 @@ const theme = {
   bg: {
     default: '#FFFFFF',
     wash: '#FBFCFE',
-    reverse: '#282560'
+    reverse: '#282560',
+    dark: '#111111'
   },
   text: {
     default: '#111111',
