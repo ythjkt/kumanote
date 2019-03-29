@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 
-import Logo from '../../components/logo/'
 import { Button } from '../../components/button/'
 import Avatar from '../../views/avatar/'
 import NoteMenu from '../../views/noteMenu'
@@ -52,21 +51,7 @@ const PaddingRight = styled.div`
 class Header extends Component {
   render() {
     const { isAuthenticated, user } = this.props.user
-    console.log(this.props)
     let noteId = this.props.match.params.note_id
-    console.log(noteId)
-
-    console.log(this.props.note.notes)
-    console.log(
-      this.props.note.notes[noteId] ? this.props.note.notes[noteId].title : null
-    )
-
-    const authLinks = (
-      <FlexBox>
-        <NoteMenu />
-        <Avatar />
-      </FlexBox>
-    )
 
     return (
       <StyledHeader shadow={true}>
@@ -83,8 +68,12 @@ class Header extends Component {
               {this.props.note.saving ? 'saving...' : null}
             </PaddingRight>
           </FlexRow>
-
-          {authLinks}
+          <FlexRow>
+            <PaddingRight>
+              <NoteMenu />
+            </PaddingRight>
+            <Avatar />
+          </FlexRow>
         </Wrapper>
       </StyledHeader>
     )

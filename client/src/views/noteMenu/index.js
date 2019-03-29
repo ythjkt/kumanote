@@ -7,8 +7,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { logoutUser } from '../../actions/userActions'
+import { deleteNote } from '../../actions/noteActions'
 import { connect } from 'react-redux'
 import theme from '../../const/theme'
+import { withRouter } from 'react-router-dom'
+
+import { MenuIcon } from '../../components/icon/'
 
 const Nav = styled.nav`
   width: 200px;
@@ -50,6 +54,10 @@ const MenuItem = styled.span`
   }
 `
 
+const Button = styled.span`
+  cursor: pointer;
+`
+
 class Avatar extends Component {
   state = {
     navOpen: false
@@ -80,15 +88,25 @@ class Avatar extends Component {
     this.props.logoutUser()
   }
 
+  onDeleteClick = () => {
+    this.props.deleteNote(this.props.note.selectedNoteId)
+    this.props.history.push('/app')
+  }
+
   render() {
     return (
       <ToggleNav>
-        <UserAvatar onClick={this.onClick}>
-          {this.props.user.user.name.substring(0, 1).toUpperCase()}
-        </UserAvatar>
+        <Button>
+          <MenuIcon
+            onClick={this.onClick}
+            height="30px"
+            fill={theme.text.placeholder}
+          />
+        </Button>
+
         {this.state.navOpen ? (
           <Nav ref={this.thisRef}>
-            <MenuItem>Delete Note</MenuItem>
+            <MenuItem onClick={this.onDeleteClick}>Delete Note</MenuItem>
           </Nav>
         ) : null}
       </ToggleNav>
@@ -97,10 +115,12 @@ class Avatar extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  note: state.note
 })
 
-export default connect(
-  mapStateToProps,
-  { logoutUser }
-)(Avatar)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { logoutUser, deleteNote }
+  )(Avatar)
+)
