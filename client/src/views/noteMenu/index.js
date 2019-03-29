@@ -1,7 +1,6 @@
 /* This component needs cleaning up 
 - separate presentational and logical
-- connect setting page
-- adjust styling
+- DRY with avatar component
 */
 
 import React, { Component } from 'react'
@@ -58,25 +57,29 @@ const Button = styled.span`
   cursor: pointer;
 `
 
-class Avatar extends Component {
+class NoteMenu extends Component {
   state = {
     navOpen: false
   }
 
-  thisRef = React.createRef()
-
   onClick = e => {
     if (!this.state.navOpen) {
       this.setState({ navOpen: true }, () => {
-        document.addEventListener('click', this.onClick)
+        document.addEventListener('click', this.handleClickOutside)
       })
     } else {
-      if (!this.thisRef.current.contains(e.target)) {
-        this.setState({ navOpen: false }, () => {
-          document.removeEventListener('click', this.onClick)
-        })
-      }
+      this.setState({ navOpen: false }, () => {
+        document.removeEventListener('click', this.handleClickOutside)
+      })
     }
+  }
+
+  handleClickOutside = e => {
+    e.preventDefault()
+
+    this.setState({ navOpen: false }, () => {
+      document.removeEventListener('click', this.handleClickOutside)
+    })
   }
 
   onLogoutUser = e => {
@@ -105,7 +108,7 @@ class Avatar extends Component {
         </Button>
 
         {this.state.navOpen ? (
-          <Nav ref={this.thisRef}>
+          <Nav>
             <MenuItem onClick={this.onDeleteClick}>Delete Note</MenuItem>
           </Nav>
         ) : null}
@@ -122,5 +125,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     { logoutUser, deleteNote }
-  )(Avatar)
+  )(NoteMenu)
 )

@@ -55,20 +55,24 @@ class Avatar extends Component {
     navOpen: false
   }
 
-  thisRef = React.createRef()
-
   onClick = e => {
     if (!this.state.navOpen) {
       this.setState({ navOpen: true }, () => {
-        document.addEventListener('click', this.onClick)
+        document.addEventListener('click', this.handleClickOutside)
       })
     } else {
-      if (!this.thisRef.current.contains(e.target)) {
-        this.setState({ navOpen: false }, () => {
-          document.removeEventListener('click', this.onClick)
-        })
-      }
+      this.setState({ navOpen: false }, () => {
+        document.removeEventListener('click', this.handleClickOutside)
+      })
     }
+  }
+
+  handleClickOutside = e => {
+    e.preventDefault()
+
+    this.setState({ navOpen: false }, () => {
+      document.removeEventListener('click', this.handleClickOutside)
+    })
   }
 
   onLogoutUser = e => {
@@ -87,7 +91,7 @@ class Avatar extends Component {
           {this.props.user.user.name.substring(0, 1).toUpperCase()}
         </UserAvatar>
         {this.state.navOpen ? (
-          <Nav ref={this.thisRef}>
+          <Nav>
             <MenuItem>{this.props.user.user.name}</MenuItem>
             <MenuItem>Settings</MenuItem>
             <MenuItem onClick={this.onLogoutUser}>Logout</MenuItem>
