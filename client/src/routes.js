@@ -24,7 +24,7 @@ class Routes extends Component {
           <div className="app">
             <GlobalStyle />
             <Switch>
-              <Route path="/app/:note_id" component={NoteHeader} />
+              <PrivateRoute path="/app/:note_id" component={NoteHeader} />
               <Route component={Header} />
             </Switch>
             <Route exact path="/register" component={Register} />
