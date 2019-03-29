@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Button = styled.button`
+export const Button = styled.button`
   background: ${props => (props.primary ? '#3850A2' : 'white')};
   color: ${props => (props.primary ? 'white' : props.theme.text.default)};
   border: ${props => (props.primary ? 'none' : '1px solid #dcdbdb')};
@@ -17,5 +17,3 @@ const Button = styled.button`
 
   cursor: pointer;
 `
-
-export default Button

@@ -22,7 +22,7 @@ const note = (state = initialState, action) => {
   switch (action.type) {
     case GET_NOTES:
       // Return an object with id as key
-      var notes = arrayToObject(action.payload, 'id')
+      var notes = action.payload ? arrayToObject(action.payload, 'id') : {}
       return {
         ...state,
         notes,

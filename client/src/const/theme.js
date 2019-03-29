@@ -2,7 +2,8 @@ const theme = {
   bg: {
     default: '#FFFFFF',
     wash: '#FBFCFE',
-    reverse: '#282560'
+    reverse: '#282560',
+    dark: '#111111'
   },
   text: {
     default: '#111111',
@@ -18,7 +19,9 @@ const theme = {
   },
   font: {
     primary: "'Open Sans', sans-serif",
-    secondary: "'Roboto', sans-serif"
+    secondary: "'Roboto', sans-serif",
+    system:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
   }
 }
 

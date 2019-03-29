@@ -6,8 +6,8 @@ import { loginUser } from '../../actions/userActions'
 import { Link } from 'react-router-dom'
 
 // Components
-import TextFieldGroup from '../../components/common/TextFieldGroupInput'
-import Button from '../../components/atoms/Button'
+import InputGroup from '../../components/inputGroup/'
+import { Button } from '../../components/button/'
 
 // Styled Components
 import { CenterBlock, CenterBox, StyledForm } from './style'
@@ -67,7 +67,7 @@ class Login extends Component {
       <CenterBlock>
         <CenterBox>
           <StyledForm onSubmit={this.onSubmit}>
-            <TextFieldGroup
+            <InputGroup
               type="text"
               name="email"
               placeholder="Email"
@@ -75,7 +75,7 @@ class Login extends Component {
               onChange={this.onChange}
               error={errors.email}
             />
-            <TextFieldGroup
+            <InputGroup
               name="password"
               placeholder="Password"
               type="password"

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle from './reset.css'
@@ -9,13 +7,14 @@ import GlobalStyle from './reset.css'
 import theme from './const/theme'
 
 // Import Componenets
-import PrivateRoute from './containers/auth/PrivateRoute'
+import PrivateRoute from './views/privateRoute/'
 import Home from './views/pages/home'
-import Dashboard from './components/Dashboard'
-import Register from './containers/auth/Register'
+import Dashboard from './views/notes/'
+import Register from './views/register'
 import Login from './views/login/'
-import NoteEditor from './containers/note/NoteEditor'
-import Header from './containers/header'
+import NoteEditor from './views/note/'
+import Header from './views/header'
+import NoteHeader from './views/noteHeader'
 
 class Routes extends Component {
   render() {
@@ -24,7 +23,10 @@ class Routes extends Component {
         <Router>
           <div className="app">
             <GlobalStyle />
-            <Header />
+            <Switch>
+              <Route path="/app/:note_id" component={NoteHeader} />
+              <Route component={Header} />
+            </Switch>
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Home} />

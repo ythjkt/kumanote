@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
@@ -8,23 +7,10 @@ import { registerUser } from '../../actions/userActions'
 
 // Components
 import TextFieldGroup from '../../components/common/TextFieldGroupInput'
-import Button from '../../components/atoms/Button'
+import { Button } from '../../components/button/'
 
-const CenterBlock = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-`
-
-const CenterBox = styled.div`
-  width: 320px;
-`
-
-const StyledForm = styled.form`
-  margin-bottom: 20px;
-`
+// Styled Components
+import { CenterBlock, CenterBox, StyledForm } from './style'
 
 class Register extends Component {
   constructor(props) {
@@ -34,6 +20,7 @@ class Register extends Component {
       name: '',
       email: '',
       password: '',
+      password2: '',
       errors: {}
     }
 
@@ -64,11 +51,13 @@ class Register extends Component {
     const newUser = {
       name: this.state.name,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      password2: this.state.password2
     }
 
     this.props.registerUser(newUser, this.props.history)
   }
+
   render() {
     const { errors } = this.state
     return (
@@ -96,6 +85,14 @@ class Register extends Component {
               value={this.state.password}
               onChange={this.onChange}
               error={errors.password}
+            />
+            <TextFieldGroup
+              type="password"
+              name="password2"
+              placeholder="Confirm password"
+              value={this.state.password2}
+              onChange={this.onChange}
+              error={errors.password2}
             />
             <Button type="submit">Register</Button>
           </StyledForm>

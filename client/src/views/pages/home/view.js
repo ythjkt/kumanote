@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import theme from '../../../const/theme'
 import styled from 'styled-components'
 
-import Button from '../../../components/atoms/Button'
+import { Button } from '../../../components/button/'
 import Logo from '../../../components/logo/'
 
 import { FlexCol, FlexRow, Section, ImageFrame, SectionTitle } from './style'
 
 export const Overview = () => {
   const ThisSection = styled(Section)`
-    background-color: #cbd8ef;
     padding-top: 180px;
     padding-bottom: 120px;
+    height: 98vh;
   `
   const ThisTitle = styled.h2`
     font-family: ${theme.font.secondary};
@@ -67,7 +67,7 @@ export const Features = () => {
   `
 
   const ThisSection = styled(Section)`
-    background-color: #f8d67b;
+    background-color: #cbd8ef;
     flex-direction: column;
     padding: 80px 0;
   `
