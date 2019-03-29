@@ -8,6 +8,8 @@ import { Button } from '../../components/button/'
 import Avatar from '../../views/avatar/'
 import NoteMenu from '../../views/noteMenu'
 
+import { BackIcon } from '../../components/icon/'
+
 const StyledHeader = styled.div`
   height: 60px;
   padding: 10px 24px;
@@ -41,9 +43,14 @@ const ThisButton = styled(Button)`
 class Header extends Component {
   render() {
     const { isAuthenticated, user } = this.props.user
+    console.log(this.props)
+    let noteId = this.props.match.params.note_id
+    console.log(noteId)
 
-    const pathname = this.props.location && this.props.location.pathname
-    let isHome = pathname == '/' || pathname == '/about'
+    console.log(this.props.note.notes)
+    console.log(
+      this.props.note.notes[noteId] ? this.props.note.notes[noteId].title : null
+    )
 
     const authLinks = (
       <FlexBox>
@@ -52,23 +59,12 @@ class Header extends Component {
       </FlexBox>
     )
 
-    const guestLinks = (
-      <FlexBox>
-        <ThisButton as={Link} to="/login">
-          Login
-        </ThisButton>
-        {/*passes true as string to avoid react-router raising error. (styled-component issuse #1198) */}
-        <ThisButton as={Link} primary="true" to="/register">
-          Create an account
-        </ThisButton>
-      </FlexBox>
-    )
-
     return (
-      <StyledHeader shadow={!isHome}>
+      <StyledHeader shadow={true}>
         <Wrapper>
-          <Logo />
-          {isAuthenticated ? authLinks : guestLinks}
+          <BackIcon height="16px" />
+          {this.props.note.notes[noteId] && this.props.note.notes[noteId].title}
+          {authLinks}
         </Wrapper>
       </StyledHeader>
     )
@@ -76,7 +72,8 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  note: state.note
 })
 
 export default withRouter(connect(mapStateToProps)(Header))
