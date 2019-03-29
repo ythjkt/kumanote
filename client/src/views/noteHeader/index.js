@@ -22,6 +22,11 @@ const StyledHeader = styled.div`
     props.shadow ? '1px solid ' + props.theme.border.default : 'none'};
 `
 
+const FlexRow = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 const Wrapper = styled.div`
   flex: 1;
   display: flex;
@@ -38,6 +43,10 @@ const FlexBox = styled.div`
 
 const ThisButton = styled(Button)`
   margin-right: 24px;
+`
+
+const PaddingRight = styled.div`
+  padding-right: 16px;
 `
 
 class Header extends Component {
@@ -62,8 +71,19 @@ class Header extends Component {
     return (
       <StyledHeader shadow={true}>
         <Wrapper>
-          <BackIcon height="16px" />
-          {this.props.note.notes[noteId] && this.props.note.notes[noteId].title}
+          <FlexRow>
+            <PaddingRight as={Link} to="/app">
+              <BackIcon height="16px" />
+            </PaddingRight>
+            <PaddingRight>
+              {this.props.note.notes[noteId] &&
+                this.props.note.notes[noteId].title}
+            </PaddingRight>
+            <PaddingRight>
+              {this.props.note.saving ? 'saving...' : null}
+            </PaddingRight>
+          </FlexRow>
+
           {authLinks}
         </Wrapper>
       </StyledHeader>
