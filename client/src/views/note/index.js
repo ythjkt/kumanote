@@ -23,7 +23,6 @@ class NoteEditor extends Component {
   }
 
   componentWillMount() {
-    console.log('hi')
     this.props.getNote(this.props.match.params.id)
   }
 
