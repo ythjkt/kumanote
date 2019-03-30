@@ -10,6 +10,8 @@ import { logoutUser } from '../../actions/userActions'
 import { connect } from 'react-redux'
 import theme from '../../const/theme'
 
+import { Link } from 'react-router-dom'
+
 const Nav = styled.nav`
   width: 200px;
   background-color: white;
@@ -93,7 +95,9 @@ class Avatar extends Component {
         {this.state.navOpen ? (
           <Nav>
             <MenuItem>{this.props.user.user.name}</MenuItem>
-            <MenuItem>Settings</MenuItem>
+            <MenuItem as={Link} to="/app/settings/">
+              Settings
+            </MenuItem>
             <MenuItem onClick={this.onLogoutUser}>Logout</MenuItem>
           </Nav>
         ) : null}

@@ -15,6 +15,7 @@ import Login from './views/login/'
 import NoteEditor from './views/note/'
 import Header from './views/header'
 import NoteHeader from './views/noteHeader'
+import Settings from './views/pages/settings/'
 
 class Routes extends Component {
   render() {
@@ -24,14 +25,19 @@ class Routes extends Component {
           <div className="app">
             <GlobalStyle />
             <Switch>
+              {/* TODO Improve this mess soon! */}
+              <PrivateRoute path="/app/settings" component={Header} />
               <PrivateRoute path="/app/:note_id" component={NoteHeader} />
               <Route component={Header} />
             </Switch>
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/" component={Home} />
-            <PrivateRoute exact path="/app" component={Dashboard} />
-            <PrivateRoute exact path="/app/:id" component={NoteEditor} />
+            <Switch>
+              <Route exact path="/register/" component={Register} />
+              <Route exact path="/login/" component={Login} />
+              <Route exact path="/" component={Home} />
+              <PrivateRoute exact path="/app/" component={Dashboard} />
+              <PrivateRoute exact path="/app/settings" component={Settings} />
+              <PrivateRoute exact path="/app/:id" component={NoteEditor} />
+            </Switch>
           </div>
         </Router>
       </ThemeProvider>
