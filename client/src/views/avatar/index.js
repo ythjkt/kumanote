@@ -57,6 +57,10 @@ class Avatar extends Component {
     navOpen: false
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside)
+  }
+
   onClick = e => {
     if (!this.state.navOpen) {
       this.setState({ navOpen: true }, () => {
@@ -71,6 +75,8 @@ class Avatar extends Component {
 
   handleClickOutside = e => {
     e.preventDefault()
+
+    console.log('click being handled outside')
 
     this.setState({ navOpen: false }, () => {
       document.removeEventListener('click', this.handleClickOutside)

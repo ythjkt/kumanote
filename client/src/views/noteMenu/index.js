@@ -62,6 +62,10 @@ class NoteMenu extends Component {
     navOpen: false
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside)
+  }
+
   onClick = e => {
     if (!this.state.navOpen) {
       this.setState({ navOpen: true }, () => {
