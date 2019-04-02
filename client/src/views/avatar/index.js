@@ -1,9 +1,3 @@
-/* This component needs cleaning up 
-- separate presentational and logical
-- connect setting page
-- adjust styling
-*/
-
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { logoutUser } from '../../actions/userActions'
@@ -11,6 +5,8 @@ import { connect } from 'react-redux'
 import theme from '../../const/theme'
 
 import { Link } from 'react-router-dom'
+
+import DropdownMenu from '../../components/dropdownMenu/'
 
 const Nav = styled.nav`
   width: 200px;
@@ -24,7 +20,7 @@ const Nav = styled.nav`
   flex-direction: column;
 `
 
-const UserAvatar = styled.button`
+const StyledUserAvatar = styled.button`
   width: 32px;
   height: 32px;
   display: block;
@@ -52,62 +48,20 @@ const MenuItem = styled.span`
   }
 `
 
-class Avatar extends Component {
-  state = {
-    navOpen: false
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside)
-  }
-
-  onClick = e => {
-    if (!this.state.navOpen) {
-      this.setState({ navOpen: true }, () => {
-        document.addEventListener('click', this.handleClickOutside)
-      })
-    } else {
-      this.setState({ navOpen: false }, () => {
-        document.removeEventListener('click', this.handleClickOutside)
-      })
-    }
-  }
-
-  handleClickOutside = e => {
-    e.preventDefault()
-
-    console.log('click being handled outside')
-
-    this.setState({ navOpen: false }, () => {
-      document.removeEventListener('click', this.handleClickOutside)
-    })
-  }
-
-  onLogoutUser = e => {
-    e.preventDefault()
-    e.stopPropagation()
-
-    document.removeEventListener('click', this.onClick)
-
-    this.props.logoutUser()
-  }
-
+export default class Avatar extends Component {
   render() {
     return (
-      <ToggleNav>
-        <UserAvatar onClick={this.onClick}>
-          {this.props.user.user.name.substring(0, 1).toUpperCase()}
-        </UserAvatar>
-        {this.state.navOpen ? (
-          <Nav>
-            <MenuItem>{this.props.user.user.name}</MenuItem>
-            <MenuItem as={Link} to="/app/settings/">
-              Settings
-            </MenuItem>
-            <MenuItem onClick={this.onLogoutUser}>Logout</MenuItem>
-          </Nav>
-        ) : null}
-      </ToggleNav>
+      <DropdownMenu Button={ConnectedUserAvatar} Menu={ConnectedUserMenu} />
+    )
+  }
+}
+
+class UserAvatar extends Component {
+  render() {
+    return (
+      <StyledUserAvatar>
+        {this.props.user.user.name.substring(0, 1).toUpperCase()}
+      </StyledUserAvatar>
     )
   }
 }
@@ -116,7 +70,30 @@ const mapStateToProps = state => ({
   user: state.user
 })
 
-export default connect(
+const ConnectedUserAvatar = connect(mapStateToProps)(UserAvatar)
+
+class UserMenu extends Component {
+  onLogoutUser = e => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    this.props.logoutUser()
+  }
+
+  render() {
+    return (
+      <Nav>
+        <MenuItem>{this.props.user.user.name}</MenuItem>
+        <MenuItem as={Link} to="/app/settings/">
+          Settings
+        </MenuItem>
+        <MenuItem onClick={this.onLogoutUser}>Logout</MenuItem>
+      </Nav>
+    )
+  }
+}
+
+const ConnectedUserMenu = connect(
   mapStateToProps,
   { logoutUser }
-)(Avatar)
+)(UserMenu)
