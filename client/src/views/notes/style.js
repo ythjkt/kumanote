@@ -1,20 +1,6 @@
 import styled from 'styled-components'
 import theme from '../../const/theme'
 
-export const Main = styled.main`
-  padding-top: 100px;
-  display: grid;
-  grid-template-columns: 1fr 1200px 1fr;
-`
-
-export const MainContainer = styled.div`
-  grid-column: 2/3;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 16px;
-`
-
 export const SectionTitle = styled.h1`
   font-family: ${theme.font.secondary};
   font-size: 24px;

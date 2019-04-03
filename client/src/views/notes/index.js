@@ -1,10 +1,10 @@
 import React from 'react'
 
 import styled from 'styled-components'
-import theme from '../../const/theme'
 
 import { NoteList, AddNote } from './view'
-import { Main, MainContainer, SectionTitle, SectionSubtitle } from './style'
+import { SectionTitle, SectionSubtitle } from './style'
+import { Main, MainContainer } from '../../components/layout/'
 
 const FlexCol = styled.div`
   display: flex;
