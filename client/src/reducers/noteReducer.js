@@ -1,15 +1,6 @@
 import arrayToObject from '../utils/arrayToObject'
 
-import {
-  ADD_NOTE,
-  EDIT_NOTE,
-  GET_NOTES,
-  GET_NOTE,
-  DELETE_NOTE,
-  SELECT_NOTE,
-  NOTE_LOADING,
-  NOTE_SAVING
-} from '../const/actionTypes'
+import { noteActionTypes } from '../const/actionTypes'
 
 const initialState = {
   selectedNoteId: null,
@@ -20,7 +11,7 @@ const initialState = {
 
 const note = (state = initialState, action) => {
   switch (action.type) {
-    case GET_NOTES:
+    case noteActionTypes.GET_NOTES:
       // Return an object with id as key
       var notes = action.payload ? arrayToObject(action.payload, 'id') : {}
       return {
@@ -28,7 +19,7 @@ const note = (state = initialState, action) => {
         notes,
         loading: false
       }
-    case GET_NOTE:
+    case noteActionTypes.GET_NOTE:
       var notes = { ...state.notes, [action.payload.id]: action.payload }
       return {
         ...state,
@@ -36,28 +27,31 @@ const note = (state = initialState, action) => {
         selectedNoteId: action.payload.id,
         loading: false
       }
-    case NOTE_LOADING:
+    case noteActionTypes.NOTE_LOADING:
       return {
         ...state,
         loading: true
       }
-    case NOTE_SAVING:
+    case noteActionTypes.NOTE_SAVING:
       return {
         ...state,
         saving: true
       }
-    case SELECT_NOTE:
+    case noteActionTypes.SELECT_NOTE:
       return {
         ...state,
         selectedNoteId: action.payload.id
       }
-    case ADD_NOTE:
+    case noteActionTypes.ADD_NOTE:
       return {
         loading: false,
         selectedNoteId: action.payload.id,
-        notes: { [action.payload.id]: action.payload, ...state.notes }
+        notes: {
+          [action.payload.id]: action.payload,
+          ...state.notes
+        }
       }
-    case EDIT_NOTE:
+    case noteActionTypes.EDIT_NOTE:
       return {
         ...state,
         saving: false,
@@ -72,7 +66,7 @@ const note = (state = initialState, action) => {
           }
         }
       }
-    case DELETE_NOTE:
+    case noteActionTypes.DELETE_NOTE:
       let newState = { ...state, selectedNoteId: null }
       delete newState.notes[action.payload.id]
       return newState

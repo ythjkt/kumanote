@@ -1,15 +1,18 @@
-// errors
-export const GET_ERRORS = 'GET_ERRORS'
+export const errorActionTypes = {
+  GET_ERRORS: 'GET_ERRORS'
+}
 
-// user
-export const SET_CURRENT_USER = 'SET_CURRENT_USER'
+export const userActionTypes = {
+  SET_CURRENT_USER: 'SET_CURRENT_USER'
+}
 
-// note
-export const ADD_NOTE = 'ADD_NOTE'
-export const EDIT_NOTE = 'EDIT_NOTE'
-export const GET_NOTES = 'GET_NOTES'
-export const GET_NOTE = 'GET_NOTE'
-export const DELETE_NOTE = 'DELETE_NOTE'
-export const SELECT_NOTE = 'SELECT_NOTE'
-export const NOTE_LOADING = 'NOTE_LOADING'
-export const NOTE_SAVING = 'NOTE_SAVING'
+export const noteActionTypes = {
+  ADD_NOTE: 'ADD_NOTE',
+  EDIT_NOTE: 'EDIT_NOTE',
+  GET_NOTES: 'GET_NOTES',
+  GET_NOTE: 'GET_NOTE',
+  DELETE_NOTE: 'DELETE_NOTE',
+  SELECT_NOTE: 'SELECT_NOTE',
+  NOTE_LOADING: 'NOTE_LOADING',
+  NOTE_SAVING: 'NOTE_SAVING'
+}

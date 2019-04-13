@@ -1,16 +1,6 @@
 import axios from 'axios'
 
-import {
-  ADD_NOTE,
-  EDIT_NOTE,
-  GET_NOTES,
-  GET_NOTE,
-  DELETE_NOTE,
-  SELECT_NOTE,
-  NOTE_LOADING,
-  GET_ERRORS,
-  NOTE_SAVING
-} from '../const/actionTypes'
+import { noteActionTypes, errorActionTypes } from '../const/actionTypes'
 
 // Gets current user's notes
 export const getNotes = () => dispatch => {
@@ -19,25 +9,24 @@ export const getNotes = () => dispatch => {
     .get('/api/notes')
     .then(res => {
       return dispatch({
-        type: GET_NOTES,
+        type: noteActionTypes.GET_NOTES,
         payload: res.data
       })
     })
     .catch(err => {
       return dispatch({
-        type: GET_NOTES,
+        type: noteActionTypes.GET_NOTES,
         payload: null
       })
     })
 }
-
 // Gets a single note
 export const getNote = id => dispatch => {
   axios
     .get(`/api/notes/${id}`)
     .then(res => {
       return dispatch({
-        type: GET_NOTE,
+        type: noteActionTypes.GET_NOTE,
         payload: res.data
       })
     })
@@ -62,14 +51,14 @@ export const addNote = history => dispatch => {
     .then(res => {
       history.push(`/app/${res.data.id}`)
       return dispatch({
-        type: ADD_NOTE,
+        type: noteActionTypes.ADD_NOTE,
         payload: res.data
       })
     })
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
+        type: errorActionTypes.GET_ERRORS,
+        payload: err.data
       })
     )
 }
@@ -86,21 +75,21 @@ export const editNote = (id, title, excerpt, content) => dispatch => {
     })
     .then(res => {
       return dispatch({
-        type: EDIT_NOTE,
+        type: noteActionTypes.EDIT_NOTE,
         payload: res.data
       })
     })
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
+        type: errorActionTypes.GET_ERRORS,
+        payload: err.data
       })
     )
 }
 
 export const selectNote = id => {
   return {
-    type: SELECT_NOTE,
+    type: noteActionTypes.SELECT_NOTE,
     payload: {
       id
     }
@@ -112,24 +101,24 @@ export const deleteNote = id => dispatch => {
     .delete(`/api/notes/${id}`)
     .then(res => {
       return dispatch({
-        type: DELETE_NOTE,
+        type: noteActionTypes.DELETE_NOTE,
         payload: res.data
       })
     })
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
+        type: errorActionTypes.GET_ERRORS,
+        payload: err.data
       })
     )
 }
 
 // Sets Note loading to true
 export const setNoteLoading = () => ({
-  type: NOTE_LOADING
+  type: noteActionTypes.NOTE_LOADING
 })
 
 // Sets Note saving to true
 export const setNoteSaving = () => ({
-  type: NOTE_SAVING
+  type: noteActionTypes.NOTE_SAVING
 })
