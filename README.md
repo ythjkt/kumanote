@@ -1,6 +1,10 @@
 # Kumanote
 A web based note taking app.
 
+<p align='center'>
+  <img src="/docs/assets/demo.gif" width="66%%">
+</p>
+
 ## Table of Content
 - [Setting Up](#setting-up)
   - [Prerequietes](#prerequietes)

@@ -14,8 +14,6 @@ const validateLoginInput = require('../validators/validateLoginInput')
 router.post('/register', (req, res) => {
   const { errors, isValid } = validateResigeterInput(req.body)
 
-  console.log('You are hitting register')
-
   if (!isValid) {
     return res.status(400).json(errors)
   }

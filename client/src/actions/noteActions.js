@@ -53,7 +53,7 @@ export const getNote = id => dispatch => {
 export const addNote = history => dispatch => {
   axios
     .post('/api/notes', {
-      title: 'untitled',
+      title: '',
       excerpt: '',
       content: '',
       created: new Date().getTime(),
@@ -76,7 +76,6 @@ export const addNote = history => dispatch => {
 
 export const editNote = (id, title, excerpt, content) => dispatch => {
   dispatch(setNoteSaving())
-  console.log(excerpt)
   axios
     .post('/api/notes', {
       id,
