@@ -16,6 +16,9 @@ const StyledHeader = styled.div`
   display: flex;
   align-items: center;
   position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
   width: 100%;
   border-bottom: ${props =>
     props.shadow ? '1px solid ' + props.theme.border.default : 'none'};
