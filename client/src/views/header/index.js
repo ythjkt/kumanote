@@ -77,7 +77,7 @@ const HambugerMenu = styled.div.attrs({
   }
 `
 
-const MobileMenu = styled.div`
+const StyledMobileMenu = styled.div`
   display: ${props => (props.open ? 'flex' : 'none')};
   height: calc(100vh - 60px);
   width: 100vw;
@@ -85,7 +85,22 @@ const MobileMenu = styled.div`
   position: absolute;
   top: 60px;
   left: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
+
+const MobileMenu = ({ open, onClick }) => (
+  <StyledMobileMenu open={open} onClick={onClick}>
+    <Button as={Link} to="/login" reverse>
+      Login
+    </Button>
+    <br />
+    <Button as={Link} primary="true" to="/register">
+      Create an account
+    </Button>
+  </StyledMobileMenu>
+)
 
 class Header extends Component {
   state = {
@@ -112,7 +127,7 @@ class Header extends Component {
           <span />
           <span />
         </HambugerMenu>
-        <MobileMenu open={this.state.navOpen} />
+        <MobileMenu open={this.state.navOpen} onClick={this.toggleNavOpen} />
       </StyledHeader>
     )
   }
