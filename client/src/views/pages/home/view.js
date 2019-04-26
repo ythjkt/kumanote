@@ -38,8 +38,17 @@ export const Overview = () => {
     }
   `
 
-  const RegisterButton = styled(Button)`
+  const Buttons = styled.div`
     grid-area: button;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: auto;
+      grid-template-rows: auto auto;
+      justify-items: start;
+    }
   `
 
   const Grid = styled.div`
@@ -72,9 +81,15 @@ export const Overview = () => {
           cause of cancer. My decluttering your notes, not only can you reduce
           the chance of cancer but also be happier with life.
         </Copy>
-        <RegisterButton as={Link} to="/register" primary>
-          Create an account
-        </RegisterButton>
+        <Buttons>
+          <Button as={Link} to="/register" primary>
+            Create an account
+          </Button>
+          <Button as={Link} to="/login">
+            Login
+          </Button>
+        </Buttons>
+
         <HeroImage width="600">
           <img src="/img/screenshot.1.png" />
         </HeroImage>

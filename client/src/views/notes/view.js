@@ -16,8 +16,7 @@ import {
   Updated,
   Excerpt,
   StyledNotePanel,
-  Wrapper,
-  StyledNoteList
+  Wrapper
 } from './style'
 
 const NoteListItem = props => {
@@ -67,7 +66,7 @@ class NoteListClass extends Component {
           )
         })
     }
-    return <StyledNoteList>{notes}</StyledNoteList>
+    return <div>{notes}</div>
   }
 }
 
