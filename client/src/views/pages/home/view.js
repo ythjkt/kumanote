@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import theme from '../../../const/theme'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import { Button } from '../../../components/button/'
 import Logo from '../../../components/logo/'
@@ -9,50 +10,82 @@ import { FlexCol, FlexRow, Section, ImageFrame, SectionTitle } from './style'
 
 export const Overview = () => {
   const ThisSection = styled(Section)`
-    padding-top: 180px;
-    padding-bottom: 120px;
+    padding: 180px 0 120px;
     height: 98vh;
+
+    @media (max-width: 1000px) {
+      padding: 180px 20px 120px;
+    }
   `
   const ThisTitle = styled.h2`
+    grid-area: title;
     font-family: ${theme.font.secondary};
     font-size: 48px;
     line-height: 60px;
-    margin-bottom: 32px;
   `
 
   const Copy = styled.p`
+    grid-area: copy;
+
     font-size: 24px;
   `
 
-  const ThisFlexCol = styled(FlexCol)`
-    max-width: 600px;
-    padding-right: 80px;
+  const HeroImage = styled(ImageFrame)`
+    grid-area: image;
+
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  `
+
+  const RegisterButton = styled(Button)`
+    grid-area: button;
+  `
+
+  const Grid = styled.div`
+    display: grid;
+    grid-template-columns: 600px auto;
+    grid-template-rows: auto auto auto;
+    grid-gap: 40px;
+    grid-template-areas:
+      'title image'
+      'copy image'
+      'button image';
+    justify-items: start;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: auto;
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        'title'
+        'copy'
+        'button';
+    }
   `
 
   return (
     <ThisSection>
-      <ThisFlexCol>
+      <Grid>
         <ThisTitle>Organise your notes and store them online.</ThisTitle>
         <Copy>
           Research shows that cluttered note and information is the number one
           cause of cancer. My decluttering your notes, not only can you reduce
           the chance of cancer but also be happier with life.
         </Copy>
-      </ThisFlexCol>
-      <ImageFrame width="600">
-        <img src="/img/screenshot.1.png" />
-      </ImageFrame>
+        <RegisterButton as={Link} to="/register" primary>
+          Create an account
+        </RegisterButton>
+        <HeroImage width="600">
+          <img src="/img/screenshot.1.png" />
+        </HeroImage>
+      </Grid>
     </ThisSection>
   )
 }
 
 export const Features = () => {
-  const ThisTitle = styled(SectionTitle)`
-    margin-bottom: 60px;
-  `
-
   const FeatureList = styled.div`
-    padding: 0 40px;
+    grid-area: copy;
   `
 
   const FeatureListItem = styled.div`
@@ -70,46 +103,68 @@ export const Features = () => {
     background-color: #cbd8ef;
     flex-direction: column;
     padding: 80px 0;
+
+    @media (max-width: 1000px) {
+      padding: 80px 20px;
+    }
+  `
+
+  const ThisImageFrame = styled(ImageFrame)`
+    grid-area: image;
+    width: 100%;
+    height: auto;
+  `
+
+  const Grid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'image copy';
+    align-items: start;
+    grid-gap: 40px;
+    max-width: 1000px;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: auto;
+      grid-template-rows: auto auto;
+      grid-template-areas: 'image' 'copy';
+    }
   `
 
   return (
     <ThisSection>
-      <ThisTitle>Organise your notes and store them online.</ThisTitle>
-      <div>
-        <FlexRow>
-          <ImageFrame width="400">
-            <img src="/img/screenshot.2.png" alt="" />
-          </ImageFrame>
-          <FeatureList>
-            <FeatureListItem>
-              <h3>Research shows that cluttered note</h3>
-              <p>
-                Research shows that cluttered note and information is the number
-                one cause of cancer. My decluttering your notes, not only can
-                you reduce.
-              </p>
-            </FeatureListItem>
+      <Grid>
+        <ThisImageFrame>
+          <img src="/img/screenshot.2.png" alt="" />
+        </ThisImageFrame>
+        <FeatureList>
+          <FeatureListItem>
+            <h3>Research shows that cluttered note</h3>
+            <p>
+              Research shows that cluttered note and information is the number
+              one cause of cancer. My decluttering your notes, not only can you
+              reduce.
+            </p>
+          </FeatureListItem>
 
-            <FeatureListItem>
-              <h3>Research shows that cluttered note</h3>
-              <p>
-                Research shows that cluttered note and information is the number
-                one cause of cancer. My decluttering your notes, not only can
-                you reduce.
-              </p>
-            </FeatureListItem>
+          <FeatureListItem>
+            <h3>Research shows that cluttered note</h3>
+            <p>
+              Research shows that cluttered note and information is the number
+              one cause of cancer. My decluttering your notes, not only can you
+              reduce.
+            </p>
+          </FeatureListItem>
 
-            <FeatureListItem>
-              <h3>Research shows that cluttered note</h3>
-              <p>
-                Research shows that cluttered note and information is the number
-                one cause of cancer. My decluttering your notes, not only can
-                you reduce.
-              </p>
-            </FeatureListItem>
-          </FeatureList>
-        </FlexRow>
-      </div>
+          <FeatureListItem>
+            <h3>Research shows that cluttered note</h3>
+            <p>
+              Research shows that cluttered note and information is the number
+              one cause of cancer. My decluttering your notes, not only can you
+              reduce.
+            </p>
+          </FeatureListItem>
+        </FeatureList>
+      </Grid>
     </ThisSection>
   )
 }
@@ -130,7 +185,9 @@ export const Join = () => {
     <ThisSection>
       <ThisLogo />
       <SectionTitle>New Features Coming Soon! Signup Now</SectionTitle>
-      <Button primary>Create an account</Button>
+      <Button as={Link} to="/register" primary>
+        Create an account
+      </Button>
     </ThisSection>
   )
 }
