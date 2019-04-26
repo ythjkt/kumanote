@@ -14,6 +14,7 @@ import Register from './views/register'
 import Login from './views/login/'
 import NoteEditor from './views/note/'
 import Header from './views/header'
+import AuthHeader from './views/authHeader'
 import NoteHeader from './views/noteHeader'
 import Settings from './views/pages/settings/'
 
@@ -26,8 +27,8 @@ class Routes extends Component {
             <GlobalStyle />
             <Switch>
               {/* TODO Improve this mess soon! */}
-              <PrivateRoute path="/app/settings" component={Header} />
               <PrivateRoute path="/app/:note_id" component={NoteHeader} />
+              <PrivateRoute path="/app/" component={AuthHeader} />
               <Route component={Header} />
             </Switch>
             <Switch>
