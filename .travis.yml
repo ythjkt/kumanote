@@ -20,7 +20,7 @@ before_install:
   # Set up gcloud to a specific project
   - gcloud config set project kumanote-238810
   - gcloud config set compute/zone us-central1-a
-  - gcloud container clusters get-credentials kumanote-cluster	
+  - gcloud container clusters get-credentials kumanote-cluster-1	
   # Login to docker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Build docker image for frontend testing
@@ -36,3 +36,4 @@ deploy:
   script: bash ./scripts/deploy.sh
   on:
     branch: master
+    
