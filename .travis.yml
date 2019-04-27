@@ -6,21 +6,21 @@ services:
 env:
   global:
     - SHA=$(git rev-parse HEAD)
-    # - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
-  # # Decrypt service-account.json.enc with travis ci. service-account.json will be used to login to gcloud
-  # - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in service-account.json.enc -out service-account.json -d
-  # # Install gcloud
-  # - curl https://sdk.cloud.google.com | bash > /dev/null;
-  # - source $HOME/google-cloud-sdk/path.bash.inc
-  # # Install kubectl
-  # - gcloud components update kubectl
-  # # Login to gcloud
-  # - gcloud auth activate-service-account --key-file service-account.json
-  # # Set up gcloud to a specific project
-  # - gcloud config set project kumanote
-  # - gcloud config set compute/zone us-central1-a
-  # - gcloud container clusters get-credentials standard-cluster-1
+  # Decrypt service-account.json.enc with travis ci. service-account.json will be used to login to gcloud
+  - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in service-account.json.enc -out service-account.json -d
+  # Install gcloud
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  # Install kubectl
+  - gcloud components update kubectl
+  # Login to gcloud
+  - gcloud auth activate-service-account --key-file service-account.json
+  # Set up gcloud to a specific project
+  - gcloud config set project kumanote-238810
+  - gcloud config set compute/zone us-central1-a
+  - gcloud container clusters get-credentials kumanote-cluster	
   # Login to docker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Build docker image for frontend testing
@@ -31,8 +31,8 @@ script:
   - docker run ythjkt/react-test npm test -- --coverage
 
 # Once tests passes, deploy using deploy.sh
-# deploy:
-#   provider: script
-#   script: bash ./scripts/deploy.sh
-#   on:
-#     branch: master
+deploy:
+  provider: script
+  script: bash ./scripts/deploy.sh
+  on:
+    branch: master
