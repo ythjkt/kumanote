@@ -23,6 +23,8 @@ Once the master branch is updated, travis ci runs a test defined in .travis.yml 
 ### Linking Github to Travis CI
 1. Go to travis ci and enable the github repository
 2. Generate a service account on Google Cloud and download private key as json file
+    1. Go to IAM & Admin for the GCP project
+    2. Create a service account and download private key as json
 3. Download Travis CLI and encrypt the private key
 ```sh
 # Save the private key as service-accout.json
@@ -42,7 +44,7 @@ travis login
 travis encrypt-file service-account.json -r <github username>/<repository>
 
 # Copy and paste decryption command for travis ci to .travis.yml
-# Exampe openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in service-account.json.enc -out service-account.json -d
+# Example openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in service-account.json.enc -out service-account.json -d
 
 # Do not forget this!!! Never upload private key to github
 rm service-account.json
@@ -108,6 +110,10 @@ helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
 |------|-------|-----|----------|
 | @    | A     | 1h  | [IP]     |
 | www  | CNAME | 1h  | [domain] |
+
+Note:
+CNAMEs are used for directing subdomains to a URL. Whereas A RECORDs are used for directing a URL (main or subdomain) to an IP.
+CNAME can be used without an A RECORD.
 
 2. Install [Cert Manager](https://docs.cert-manager.io/en/latest/getting-started/install.html) with Helm
 3. Create ClusterIssuer (issuer.yml) and Certificate (certificate.yml) in k8s

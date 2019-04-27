@@ -3,18 +3,16 @@ kind: Certificate
 metadata:
   name: ythjkt-com-tls
 spec:
-  secretName: ythjkt-com
+  secretName: kumanote-ythjkt-com
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: ythjkt.com
+  commonName: kumanote.ythjkt.com
   dnsNames:
-    - ythjkt.com
-    - www.ythjkt.com
+    - kumanote.ythjkt.com
   acme:
     config:
       - http01:
           ingressClass: nginx
         domains:
-          - ythjkt.com
-          - www.ythjkt.com
+          - kumanote.ythjkt.com
