@@ -3,29 +3,28 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { NoteList, AddNote } from './view'
-import { SectionTitle, SectionSubtitle } from './style'
-import { Main, MainContainer } from '../../components/layout/'
-
-const FlexCol = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-`
+import {
+  SectionTitle,
+  SectionSubtitle,
+  Grid,
+  NoteArea,
+  TitleArea,
+  Sidebar
+} from './style'
 
 const Dashboard = () => (
-  <Main>
-    <MainContainer>
-      <FlexCol>
-        <SectionTitle>Home</SectionTitle>
-        <SectionSubtitle>All</SectionSubtitle>
-        <NoteList />
-      </FlexCol>
-      <FlexCol>
-        <AddNote />
-      </FlexCol>
-    </MainContainer>
-  </Main>
+  <Grid>
+    <TitleArea>
+      <SectionTitle>Home</SectionTitle>
+      <SectionSubtitle>All</SectionSubtitle>
+    </TitleArea>
+    <Sidebar>
+      <AddNote />
+    </Sidebar>
+    <NoteArea>
+      <NoteList />
+    </NoteArea>
+  </Grid>
 )
 
 export default Dashboard

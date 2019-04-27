@@ -10,7 +10,7 @@ export default class DropdownMenu extends Component {
     navOpen: false
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     document.removeEventListener('click', this.handleClickOutside)
   }
 
