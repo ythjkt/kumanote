@@ -23,6 +23,8 @@ Once the master branch is updated, travis ci runs a test defined in .travis.yml 
 ### Linking Github to Travis CI
 1. Go to travis ci and enable the github repository
 2. Generate a service account on Google Cloud and download private key as json file
+    1. Go to IAM & Admin for the GCP project
+    2. Create a service account and download private key as json
 3. Download Travis CLI and encrypt the private key
 ```sh
 # Save the private key as service-accout.json
