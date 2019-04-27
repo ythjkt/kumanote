@@ -42,12 +42,26 @@ export const FlexCol = styled.div`
   min-height: 100vh;
   width: 100%;
   grid-column: 2/3;
-  font-family: ${theme.font.system};
 `
 
 export const ViewGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1000px 1fr;
+  display: flex;
+  padding: 100px 20px;
+  margin: 0 auto;
+  max-width: 1000px;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  font-family: ${theme.font.system};
+`
+
+export const EditorArea = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
 `
 
 export const Button = styled.button`

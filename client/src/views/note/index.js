@@ -12,7 +12,7 @@ import {
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 import debounced from '../../utils/debounced'
-import { Toolbar, Frame, Title, FlexCol, ViewGrid, Button } from './style'
+import { Toolbar, Frame, Title, ViewGrid, Button } from './style'
 
 class NoteEditor extends Component {
   state = {
@@ -122,28 +122,26 @@ class NoteEditor extends Component {
     if (this.state.id) {
       noteContent = (
         <ViewGrid>
-          <FlexCol>
-            <Title
-              type="text"
-              value={this.state.title}
-              onChange={this.onTitleChange}
-              name="title"
-              placeholder="Title"
+          <Title
+            type="text"
+            value={this.state.title}
+            onChange={this.onTitleChange}
+            name="title"
+            placeholder="Title"
+          />
+          <Frame>
+            <Editor
+              editorState={this.state.editorState}
+              onChange={this.onEditorChange}
+              handleKeyCommand={this.handleKeyCommand}
+              placeholder="Content"
             />
-            <Frame>
-              <Editor
-                editorState={this.state.editorState}
-                onChange={this.onEditorChange}
-                handleKeyCommand={this.handleKeyCommand}
-                placeholder="Content"
-              />
-            </Frame>
-            <Toolbar>
-              <Button onClick={this.onUnderlineClick}>U</Button>
-              <Button onClick={this.onBoldClick}>B</Button>
-              <Button onClick={this.onItalicClick}>I</Button>
-            </Toolbar>
-          </FlexCol>
+          </Frame>
+          <Toolbar>
+            <Button onClick={this.onUnderlineClick}>U</Button>
+            <Button onClick={this.onBoldClick}>B</Button>
+            <Button onClick={this.onItalicClick}>I</Button>
+          </Toolbar>
         </ViewGrid>
       )
     } else {
