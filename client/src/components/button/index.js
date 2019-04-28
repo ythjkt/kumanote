@@ -17,3 +17,11 @@ export const Button = styled.button`
 
   cursor: pointer;
 `
+
+// Using primary props in Button will cause a warning
+// if Button is used as react router Link
+export const PrimaryButton = styled(Button)`
+  background: #3850a2;
+  color: white;
+  border: none;
+`

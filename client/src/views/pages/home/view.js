@@ -3,7 +3,7 @@ import theme from '../../../const/theme'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { Button } from '../../../components/button/'
+import { PrimaryButton, Button } from '../../../components/button/'
 import Logo from '../../../components/logo/'
 
 import { Section, ImageFrame, SectionTitle } from './style'
@@ -83,9 +83,9 @@ export const Overview = () => {
           the chance of cancer but also be happier with life.
         </Copy>
         <Buttons>
-          <Button as={Link} to="/register" primary>
+          <PrimaryButton as={Link} to="/register">
             Create an account
-          </Button>
+          </PrimaryButton>
           <Button as={Link} to="/login">
             Login
           </Button>
@@ -201,9 +201,9 @@ export const Join = () => {
     <ThisSection>
       <ThisLogo />
       <SectionTitle>New Features Coming Soon! Signup Now</SectionTitle>
-      <Button as={Link} to="/register" primary>
+      <PrimaryButton as={Link} to="/register">
         Create an account
-      </Button>
+      </PrimaryButton>
     </ThisSection>
   )
 }
