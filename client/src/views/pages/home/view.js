@@ -78,9 +78,9 @@ export const Overview = () => {
       <Grid>
         <ThisTitle>Organise your notes and store them online.</ThisTitle>
         <Copy>
-          Research shows that cluttered note and information is the number one
-          cause of cancer. My decluttering your notes, not only can you reduce
-          the chance of cancer but also be happier with life.
+          There probably is a research that shows cluttered notes will lower
+          one's quality of life significantly. By decluttering your notes, not
+          only can you be more organised, but also be happier with life.
         </Copy>
         <Buttons>
           <PrimaryButton as={Link} to="/register">
@@ -154,29 +154,18 @@ export const Features = () => {
         </ThisImageFrame>
         <FeatureList>
           <FeatureListItem>
-            <h3>Research shows that cluttered note</h3>
+            <h3>Autosave your changes</h3>
             <p>
-              Research shows that cluttered note and information is the number
-              one cause of cancer. My decluttering your notes, not only can you
-              reduce.
+              Kumanote keeps track of changes you make on the go. You will not
+              lose what you wrote because you didn't press save.
             </p>
           </FeatureListItem>
 
           <FeatureListItem>
-            <h3>Research shows that cluttered note</h3>
+            <h3>Richtext Editor</h3>
             <p>
-              Research shows that cluttered note and information is the number
-              one cause of cancer. My decluttering your notes, not only can you
-              reduce.
-            </p>
-          </FeatureListItem>
-
-          <FeatureListItem>
-            <h3>Research shows that cluttered note</h3>
-            <p>
-              Research shows that cluttered note and information is the number
-              one cause of cancer. My decluttering your notes, not only can you
-              reduce.
+              Kumanote comes with a build in Richtext editor. Take pretty notes
+              with bold, underline and italic fonts! * More options coming soon!
             </p>
           </FeatureListItem>
         </FeatureList>

@@ -1,8 +1,10 @@
 # Kumanote
-A web based note taking app.
+A web based note taking app. 
+
+Now deployed on GCP with Kubernetes. [https://kumanote.ythjkt.com](https://kumanote.ythjkt.com)
 
 <p align='center'>
-  <img src="/docs/assets/demo.gif" width="66%%">
+  <img src="/docs/assets/homepage-screenshot.png" width="66%">
 </p>
 
 ## Table of Content
@@ -12,6 +14,7 @@ A web based note taking app.
 - [Development](#development)
   - [Technologies](#technologies)
   - [Directory structure](#directory-structure)
+- [Frontend](docs/frontend.md)
 - [Deployment](docs/deployment.md)
 
 These instructions will help you setup the application on your local machine for development and testing purposes.
@@ -92,3 +95,6 @@ kumanote/
 ├── scripts   # Bash scripts
 └── nginx     # Load balancer for local env
 ```
+
+### More on Frontend
+[Frontend](docs/frontend.md)
