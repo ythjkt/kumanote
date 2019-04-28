@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 
-import { Button } from '../../components/button/'
 import Avatar from '../../views/avatar/'
 import NoteMenu from '../../views/noteMenu'
 
@@ -37,23 +36,12 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
-const FlexBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const ThisButton = styled(Button)`
-  margin-right: 24px;
-`
-
 const PaddingRight = styled.div`
   padding-right: 16px;
 `
 
 class Header extends Component {
   render() {
-    const { isAuthenticated, user } = this.props.user
     let noteId = this.props.match.params.note_id
 
     return (

@@ -17,13 +17,13 @@ const StyledIcon = styled.div`
 
 export const NoteIcon = props => (
   <StyledIcon {...props}>
-    <img src="/img/icon.note.svg" />
+    <img src="/img/icon.note.svg" alt="note icon" />
   </StyledIcon>
 )
 
 export const BackIcon = props => (
   <StyledIcon {...props}>
-    <img src="/img/icon.back.svg" />
+    <img src="/img/icon.back.svg" alt="back icon" />
   </StyledIcon>
 )
 

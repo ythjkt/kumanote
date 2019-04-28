@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import Logo from '../../components/logo/'
-import { Button } from '../../components/button/'
+import { PrimaryButton, Button } from '../../components/button/'
 
 const StyledHeader = styled.div`
   display: grid;
@@ -92,12 +92,12 @@ const StyledMobileMenu = styled.div`
 
 const MobileMenu = ({ open, onClick }) => (
   <StyledMobileMenu open={open} onClick={onClick}>
-    <Button as={Link} to="/login" reverse>
-      Login
-    </Button>
-    <br />
-    <Button as={Link} primary="true" to="/register">
+    <PrimaryButton as={Link} to="/register">
       Create an account
+    </PrimaryButton>
+    <br />
+    <Button as={Link} to="/login">
+      Login
     </Button>
   </StyledMobileMenu>
 )

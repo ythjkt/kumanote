@@ -29,7 +29,7 @@ const note = (state = initialState, action) => {
         loading: false
       }
     case GET_NOTE:
-      var notes = { ...state.notes, [action.payload.id]: action.payload }
+      notes = { ...state.notes, [action.payload.id]: action.payload }
       return {
         ...state,
         notes,

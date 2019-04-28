@@ -34,10 +34,6 @@ const StyledUserAvatar = styled.button`
   cursor: pointer;
 `
 
-const ToggleNav = styled.div`
-  position: relative;
-`
-
 const MenuItem = styled.span`
   padding: 16px;
   border-bottom: 1px solid ${theme.border.default};
