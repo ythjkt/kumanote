@@ -1,1 +1,1 @@
-import styled from 'styled-components'
+export const BREAK_POINT = '1000'
