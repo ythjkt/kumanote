@@ -13,22 +13,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - ythjkt.com
-        - www.ythjkt.com
-      secretName: ythjkt-com
+        - kumanote.ythjkt.com
+      secretName: kumanote-ythjkt-com
   rules:
-    - host: ythjkt.com
-      http:
-        paths:
-          - path: /?(.*)
-            backend:
-              serviceName: client-cluster-ip-service
-              servicePort: 3000
-          - path: /api/?(.*)
-            backend:
-              serviceName: api-cluster-ip-service
-              servicePort: 5000
-    - host: www.ythjkt.com
+    - host: kumanote.ythjkt.com
       http:
         paths:
           - path: /?(.*)

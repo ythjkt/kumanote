@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import Logo from '../../components/logo/'
-import { Button } from '../../components/button/'
 import Avatar from '../../views/avatar/'
 
 const StyledHeader = styled.div`
@@ -33,16 +32,10 @@ const FlexBox = styled.div`
   align-items: center;
 `
 
-const ThisButton = styled(Button)`
-  margin-right: 24px;
-`
-
 class AuthHeader extends Component {
   render() {
-    const { isAuthenticated, user } = this.props.user
-
     const pathname = this.props.location && this.props.location.pathname
-    let isHome = pathname == '/' || pathname == '/about'
+    let isHome = pathname === '/' || pathname === '/about'
 
     return (
       <StyledHeader shadow={!isHome}>
