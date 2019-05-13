@@ -10,7 +10,7 @@ import InputGroup from '../../components/inputGroup/'
 import { Button } from '../../components/button/'
 
 // Styled Components
-import { CenterBlock, CenterBox, StyledForm } from './style'
+import { CenterBlock, CenterBox, StyledForm, Title } from './style'
 
 class Login extends Component {
   constructor(props) {
@@ -66,6 +66,7 @@ class Login extends Component {
     return (
       <CenterBlock>
         <CenterBox>
+          <Title>Login</Title>
           <StyledForm onSubmit={this.onSubmit}>
             <InputGroup
               type="text"

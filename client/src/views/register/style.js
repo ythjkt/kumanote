@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import theme from '../../const/theme'
 
 export const CenterBlock = styled.div`
   display: flex;
@@ -14,4 +15,10 @@ export const CenterBox = styled.div`
 
 export const StyledForm = styled.form`
   margin-bottom: 20px;
+`
+
+export const Title = styled.h1`
+  margin: 0 0 40px;
+  font-size: 20px;
+  font-family: ${theme.font.secondary};
 `

@@ -47,16 +47,18 @@ const InputGroup = ({
 }) => {
   return (
     <StyledTextFieldGroup>
-      <Label>{placeholder}</Label>
-      <Input
-        full
-        type={type}
-        name={name}
-        className={classnames('form', { 'is-invalid': error })}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-      />
+      <Label>
+        {placeholder}
+        <Input
+          full
+          type={type}
+          name={name}
+          className={classnames('form', { 'is-invalid': error })}
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+        />
+      </Label>
       {info && <small>{info}</small>}
       {error && <ErroMessage className="invalid-feedback">{error}</ErroMessage>}
     </StyledTextFieldGroup>

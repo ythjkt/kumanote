@@ -16,7 +16,7 @@ const StyledLogo = styled(Link)`
 const Logo = ({ className }) => (
   <div className={className}>
     <StyledLogo to="/app">
-      <img src="/img/logo.svg" alt="" />
+      <img src="/img/logo.svg" alt="logo" />
     </StyledLogo>
   </div>
 )
