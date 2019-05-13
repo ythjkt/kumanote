@@ -10,7 +10,7 @@ import TextFieldGroup from '../../components/common/TextFieldGroupInput'
 import { Button } from '../../components/button/'
 
 // Styled Components
-import { CenterBlock, CenterBox, StyledForm } from './style'
+import { CenterBlock, CenterBox, StyledForm, Title } from './style'
 
 class Register extends Component {
   constructor(props) {
@@ -63,6 +63,7 @@ class Register extends Component {
     return (
       <CenterBlock>
         <CenterBox>
+          <Title>Register</Title>
           <StyledForm onSubmit={this.onSubmit}>
             <TextFieldGroup
               name="name"

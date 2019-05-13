@@ -150,7 +150,7 @@ export const Features = () => {
     <ThisSection>
       <Grid>
         <ThisImageFrame>
-          <img src="/img/screenshot.2.png" alt="" />
+          <img src="/img/screenshot.2.png" alt="screen shot of editor" />
         </ThisImageFrame>
         <FeatureList>
           <FeatureListItem>
